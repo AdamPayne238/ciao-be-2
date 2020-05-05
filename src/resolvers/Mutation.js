@@ -3,6 +3,52 @@ const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
 const { APP_SECRET, getUserId } = require('../utils')
 
+// Mutation Create Chat
+function createChat(parent, args, context){
+     
+    const userID = getUserId(context)
+
+    return context.prisma.createChat({
+        friend: args.friend,
+        user: userID
+    })
+}
+
+// Mutation Delete Chat by ID
+function deleteChat(parent, args, context){
+    
+    const userID = getUserId(context)
+
+    return context.prisma.deleteChat({
+        user: userID
+    })
+}
+
+// Mutation Create Message
+function createMessage(parent, args, context){
+
+    const userID = getUserId(context)
+
+    return context.prisma.createMessage({
+        text: args.text,
+        user: userID
+    })
+}
+
+// Mutation Delete Message by ID
+function deleteMessage(parent, args, context){
+     
+    const userID = getUserId(context)
+
+    return context.prisma.deleteMessage({
+        user: userID,
+    })
+}
+
+
+
+
+// AUTH REGISTER
 async function register(parent, args, context, info){
 
     // 1. In the signup mutation, the first thing to do is encrypting the User’s password using the bcryptjs library which you’ll install soon.
@@ -21,6 +67,7 @@ async function register(parent, args, context, info){
     }
 }
 
+// AUTH LOGIN
 async function login(parent, args, context, info){
 
     // 1. Instead of creating a new User object, you’re now using the prisma client instance to retrieve the existing User record by the email address that was sent along as an argument in the login mutation. If no User with that email address was found, you’re returning a corresponding error.
@@ -47,4 +94,8 @@ async function login(parent, args, context, info){
 module.exports = {
     register,
     login,
+    createChat,
+    deleteChat,
+    createMessage,
+    deleteMessage,
 }

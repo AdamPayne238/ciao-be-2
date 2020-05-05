@@ -11,11 +11,72 @@ type User {
     email: String!
 }
 
+type Chat {
+    id: ID!
+    isPending: Boolean!
+    isAccepted: Boolean!
+    isDenied: Boolean!
+    createdAt: DateTime!
+    updatedAt: DateTime!
+    messages: Message!
+}
+
+type Message {
+    id: ID!
+    createdAt: DateTime!
+    text: String!
+    user: User!
+}
+
 type Query {
     info: String!
+
+    chat(id: String!): Chat!
+    chats(
+        id: ID!
+        isPending: Boolean!
+        isAccepted: Boolean!
+        isDenied: Boolean!
+        createdAt: DateTime!
+        updatedAt: DateTime!
+        messages: String!
+    ): Chat!
+
+    message(id: String!): Message!
+    messages(
+        id: ID!
+        createdAt: DateTime!
+        text: String!
+        user: String!
+    ): Message!
+
 }
 
 type Mutation {
+
+    createChat(
+        isPending: Boolean!
+        isAccepted: Boolean!
+        isDenied: Boolean!
+        createdAt: DateTime!
+        updatedAt: DateTime!
+        messages: String!
+    ): Chat!
+
+    deleteChat(
+        id: String!
+    ): Chat!
+
+    createMessage(
+        id: ID!
+        createdAt: DateTime!
+        text: String!
+        user: String!
+    ): Message!
+
+    deleteMessage(
+        id: String!
+    ): Chat!
 
     register(
         first_name: String!

@@ -5,3 +5,20 @@ type User {
   email: String! @unique
   password: String!
 }
+
+type Chat {
+  id: ID! @id
+  isPending: Boolean! @default(value: true)
+  isAccepted: Boolean! @default(value: false)
+  isDenied: Boolean! @default(value: false)
+  createdAt: DateTime! @createdAt
+  updatedAt: DateTime! @updatedAt
+  messages: Message!
+}
+
+type Message {
+  id: ID! @id
+  createdAt: DateTime! @createdAt
+  text: String!
+  user: User!
+}
