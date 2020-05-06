@@ -2,7 +2,17 @@ const { getUserId } = require('../utils')
 
 // TEST SERVER / INFO
 function info(){
-    return "Welcome to un named chat app"
+    return "Welcome to Ciao!"
+}
+
+// GET USER BY ID
+function user(parent, args, context){
+    return context.prisma.user({ id: args.id })
+}
+
+// GET ALL USERS
+function users(parent, args, context){
+    return context.prisma.users()
 }
 
 // GET CHAT BY ID
@@ -28,6 +38,8 @@ function messages(parent, args, context){
 
 module.exports = {
     info,
+    user,
+    users,
     chat,
     chats,
     message,
