@@ -191,7 +191,11 @@ export type ChatOrderByInput =
   | "createdAt_ASC"
   | "createdAt_DESC"
   | "updatedAt_ASC"
-  | "updatedAt_DESC";
+  | "updatedAt_DESC"
+  | "user_ASC"
+  | "user_DESC"
+  | "friend_ASC"
+  | "friend_DESC";
 
 export type MessageOrderByInput =
   | "id_ASC"
@@ -221,6 +225,8 @@ export interface ChatCreateInput {
   isAccepted?: Maybe<Boolean>;
   isDenied?: Maybe<Boolean>;
   messages: MessageCreateOneInput;
+  user: String;
+  friend: String;
 }
 
 export type ChatWhereUniqueInput = AtLeastOne<{
@@ -231,6 +237,8 @@ export interface ChatUpdateManyMutationInput {
   isPending?: Maybe<Boolean>;
   isAccepted?: Maybe<Boolean>;
   isDenied?: Maybe<Boolean>;
+  user?: Maybe<String>;
+  friend?: Maybe<String>;
 }
 
 export interface UserCreateInput {
@@ -401,6 +409,34 @@ export interface ChatWhereInput {
   updatedAt_gt?: Maybe<DateTimeInput>;
   updatedAt_gte?: Maybe<DateTimeInput>;
   messages?: Maybe<MessageWhereInput>;
+  user?: Maybe<String>;
+  user_not?: Maybe<String>;
+  user_in?: Maybe<String[] | String>;
+  user_not_in?: Maybe<String[] | String>;
+  user_lt?: Maybe<String>;
+  user_lte?: Maybe<String>;
+  user_gt?: Maybe<String>;
+  user_gte?: Maybe<String>;
+  user_contains?: Maybe<String>;
+  user_not_contains?: Maybe<String>;
+  user_starts_with?: Maybe<String>;
+  user_not_starts_with?: Maybe<String>;
+  user_ends_with?: Maybe<String>;
+  user_not_ends_with?: Maybe<String>;
+  friend?: Maybe<String>;
+  friend_not?: Maybe<String>;
+  friend_in?: Maybe<String[] | String>;
+  friend_not_in?: Maybe<String[] | String>;
+  friend_lt?: Maybe<String>;
+  friend_lte?: Maybe<String>;
+  friend_gt?: Maybe<String>;
+  friend_gte?: Maybe<String>;
+  friend_contains?: Maybe<String>;
+  friend_not_contains?: Maybe<String>;
+  friend_starts_with?: Maybe<String>;
+  friend_not_starts_with?: Maybe<String>;
+  friend_ends_with?: Maybe<String>;
+  friend_not_ends_with?: Maybe<String>;
   AND?: Maybe<ChatWhereInput[] | ChatWhereInput>;
   OR?: Maybe<ChatWhereInput[] | ChatWhereInput>;
   NOT?: Maybe<ChatWhereInput[] | ChatWhereInput>;
@@ -433,6 +469,8 @@ export interface ChatUpdateInput {
   isAccepted?: Maybe<Boolean>;
   isDenied?: Maybe<Boolean>;
   messages?: Maybe<MessageUpdateOneRequiredInput>;
+  user?: Maybe<String>;
+  friend?: Maybe<String>;
 }
 
 export interface UserUpdateManyMutationInput {
@@ -732,6 +770,8 @@ export interface Chat {
   isDenied: Boolean;
   createdAt: DateTimeOutput;
   updatedAt: DateTimeOutput;
+  user: String;
+  friend: String;
 }
 
 export interface ChatPromise extends Promise<Chat>, Fragmentable {
@@ -742,6 +782,8 @@ export interface ChatPromise extends Promise<Chat>, Fragmentable {
   createdAt: () => Promise<DateTimeOutput>;
   updatedAt: () => Promise<DateTimeOutput>;
   messages: <T = MessagePromise>() => T;
+  user: () => Promise<String>;
+  friend: () => Promise<String>;
 }
 
 export interface ChatSubscription
@@ -754,6 +796,8 @@ export interface ChatSubscription
   createdAt: () => Promise<AsyncIterator<DateTimeOutput>>;
   updatedAt: () => Promise<AsyncIterator<DateTimeOutput>>;
   messages: <T = MessageSubscription>() => T;
+  user: () => Promise<AsyncIterator<String>>;
+  friend: () => Promise<AsyncIterator<String>>;
 }
 
 export interface ChatNullablePromise
@@ -766,6 +810,8 @@ export interface ChatNullablePromise
   createdAt: () => Promise<DateTimeOutput>;
   updatedAt: () => Promise<DateTimeOutput>;
   messages: <T = MessagePromise>() => T;
+  user: () => Promise<String>;
+  friend: () => Promise<String>;
 }
 
 export interface MessageConnection {
@@ -821,6 +867,8 @@ export interface ChatPreviousValues {
   isDenied: Boolean;
   createdAt: DateTimeOutput;
   updatedAt: DateTimeOutput;
+  user: String;
+  friend: String;
 }
 
 export interface ChatPreviousValuesPromise
@@ -832,6 +880,8 @@ export interface ChatPreviousValuesPromise
   isDenied: () => Promise<Boolean>;
   createdAt: () => Promise<DateTimeOutput>;
   updatedAt: () => Promise<DateTimeOutput>;
+  user: () => Promise<String>;
+  friend: () => Promise<String>;
 }
 
 export interface ChatPreviousValuesSubscription
@@ -843,6 +893,8 @@ export interface ChatPreviousValuesSubscription
   isDenied: () => Promise<AsyncIterator<Boolean>>;
   createdAt: () => Promise<AsyncIterator<DateTimeOutput>>;
   updatedAt: () => Promise<AsyncIterator<DateTimeOutput>>;
+  user: () => Promise<AsyncIterator<String>>;
+  friend: () => Promise<AsyncIterator<String>>;
 }
 
 export interface MessagePreviousValues {
