@@ -33,6 +33,9 @@ type Message {
 type Query {
     info: String!
 
+    user(id: String!): User!
+    users: [User!]!
+
     chat(id: String!): Chat!
     chats(
         id: ID!

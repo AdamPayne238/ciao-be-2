@@ -14,13 +14,13 @@ type Chat {
   createdAt: DateTime! @createdAt
   updatedAt: DateTime! @updatedAt
   messages: Message!
-  user: String!
-  friend: String!
+  user: String
+  friend: String
 }
 
 type Message {
   id: ID! @id
   createdAt: DateTime! @createdAt
   text: String!
-  user: User!
+  user: String
 }

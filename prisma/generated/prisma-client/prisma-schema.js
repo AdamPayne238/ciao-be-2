@@ -27,8 +27,8 @@ type Chat {
   createdAt: DateTime!
   updatedAt: DateTime!
   messages: Message!
-  user: String!
-  friend: String!
+  user: String
+  friend: String
 }
 
 type ChatConnection {
@@ -43,8 +43,8 @@ input ChatCreateInput {
   isAccepted: Boolean
   isDenied: Boolean
   messages: MessageCreateOneInput!
-  user: String!
-  friend: String!
+  user: String
+  friend: String
 }
 
 type ChatEdge {
@@ -78,8 +78,8 @@ type ChatPreviousValues {
   isDenied: Boolean!
   createdAt: DateTime!
   updatedAt: DateTime!
-  user: String!
-  friend: String!
+  user: String
+  friend: String
 }
 
 type ChatSubscriptionPayload {
@@ -200,7 +200,7 @@ type Message {
   id: ID!
   createdAt: DateTime!
   text: String!
-  user: User!
+  user: String
 }
 
 type MessageConnection {
@@ -212,7 +212,7 @@ type MessageConnection {
 input MessageCreateInput {
   id: ID
   text: String!
-  user: UserCreateOneInput!
+  user: String
 }
 
 input MessageCreateOneInput {
@@ -232,12 +232,15 @@ enum MessageOrderByInput {
   createdAt_DESC
   text_ASC
   text_DESC
+  user_ASC
+  user_DESC
 }
 
 type MessagePreviousValues {
   id: ID!
   createdAt: DateTime!
   text: String!
+  user: String
 }
 
 type MessageSubscriptionPayload {
@@ -260,16 +263,17 @@ input MessageSubscriptionWhereInput {
 
 input MessageUpdateDataInput {
   text: String
-  user: UserUpdateOneRequiredInput
+  user: String
 }
 
 input MessageUpdateInput {
   text: String
-  user: UserUpdateOneRequiredInput
+  user: String
 }
 
 input MessageUpdateManyMutationInput {
   text: String
+  user: String
 }
 
 input MessageUpdateOneRequiredInput {
@@ -321,7 +325,20 @@ input MessageWhereInput {
   text_not_starts_with: String
   text_ends_with: String
   text_not_ends_with: String
-  user: UserWhereInput
+  user: String
+  user_not: String
+  user_in: [String!]
+  user_not_in: [String!]
+  user_lt: String
+  user_lte: String
+  user_gt: String
+  user_gte: String
+  user_contains: String
+  user_not_contains: String
+  user_starts_with: String
+  user_not_starts_with: String
+  user_ends_with: String
+  user_not_ends_with: String
   AND: [MessageWhereInput!]
   OR: [MessageWhereInput!]
   NOT: [MessageWhereInput!]
@@ -410,11 +427,6 @@ input UserCreateInput {
   password: String!
 }
 
-input UserCreateOneInput {
-  create: UserCreateInput
-  connect: UserWhereUniqueInput
-}
-
 type UserEdge {
   node: User!
   cursor: String!
@@ -459,13 +471,6 @@ input UserSubscriptionWhereInput {
   NOT: [UserSubscriptionWhereInput!]
 }
 
-input UserUpdateDataInput {
-  first_name: String
-  last_name: String
-  email: String
-  password: String
-}
-
 input UserUpdateInput {
   first_name: String
   last_name: String
@@ -478,18 +483,6 @@ input UserUpdateManyMutationInput {
   last_name: String
   email: String
   password: String
-}
-
-input UserUpdateOneRequiredInput {
-  create: UserCreateInput
-  update: UserUpdateDataInput
-  upsert: UserUpsertNestedInput
-  connect: UserWhereUniqueInput
-}
-
-input UserUpsertNestedInput {
-  update: UserUpdateDataInput!
-  create: UserCreateInput!
 }
 
 input UserWhereInput {
