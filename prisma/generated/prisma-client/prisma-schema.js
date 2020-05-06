@@ -26,7 +26,7 @@ type Chat {
   isDenied: Boolean!
   createdAt: DateTime!
   updatedAt: DateTime!
-  messages: Message!
+  messages: Message
   user: String
   friend: String
 }
@@ -42,7 +42,7 @@ input ChatCreateInput {
   isPending: Boolean
   isAccepted: Boolean
   isDenied: Boolean
-  messages: MessageCreateOneInput!
+  messages: MessageCreateOneInput
   user: String
   friend: String
 }
@@ -104,7 +104,7 @@ input ChatUpdateInput {
   isPending: Boolean
   isAccepted: Boolean
   isDenied: Boolean
-  messages: MessageUpdateOneRequiredInput
+  messages: MessageUpdateOneInput
   user: String
   friend: String
 }
@@ -276,10 +276,12 @@ input MessageUpdateManyMutationInput {
   user: String
 }
 
-input MessageUpdateOneRequiredInput {
+input MessageUpdateOneInput {
   create: MessageCreateInput
   update: MessageUpdateDataInput
   upsert: MessageUpsertNestedInput
+  delete: Boolean
+  disconnect: Boolean
   connect: MessageWhereUniqueInput
 }
 

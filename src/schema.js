@@ -18,7 +18,7 @@ type Chat {
     isDenied: Boolean!
     createdAt: DateTime!
     updatedAt: DateTime!
-    messages: Message!
+    messages: Message
     user: User!
     friend: User!
 }
