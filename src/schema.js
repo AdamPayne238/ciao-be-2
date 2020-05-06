@@ -19,6 +19,8 @@ type Chat {
     createdAt: DateTime!
     updatedAt: DateTime!
     messages: Message!
+    user: User!
+    friend: User!
 }
 
 type Message {
@@ -55,12 +57,7 @@ type Query {
 type Mutation {
 
     createChat(
-        isPending: Boolean!
-        isAccepted: Boolean!
-        isDenied: Boolean!
-        createdAt: DateTime!
-        updatedAt: DateTime!
-        messages: String!
+        friend: String!
     ): Chat!
 
     deleteChat(
