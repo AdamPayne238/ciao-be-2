@@ -321,10 +321,12 @@ export interface UserUpdateManyMutationInput {
   password?: Maybe<String>;
 }
 
-export interface MessageUpdateOneRequiredInput {
+export interface MessageUpdateOneInput {
   create?: Maybe<MessageCreateInput>;
   update?: Maybe<MessageUpdateDataInput>;
   upsert?: Maybe<MessageUpsertNestedInput>;
+  delete?: Maybe<Boolean>;
+  disconnect?: Maybe<Boolean>;
   connect?: Maybe<MessageWhereUniqueInput>;
 }
 
@@ -350,7 +352,7 @@ export interface ChatUpdateInput {
   isPending?: Maybe<Boolean>;
   isAccepted?: Maybe<Boolean>;
   isDenied?: Maybe<Boolean>;
-  messages?: Maybe<MessageUpdateOneRequiredInput>;
+  messages?: Maybe<MessageUpdateOneInput>;
   user?: Maybe<String>;
   friend?: Maybe<String>;
 }
@@ -496,7 +498,7 @@ export interface ChatCreateInput {
   isPending?: Maybe<Boolean>;
   isAccepted?: Maybe<Boolean>;
   isDenied?: Maybe<Boolean>;
-  messages: MessageCreateOneInput;
+  messages?: Maybe<MessageCreateOneInput>;
   user?: Maybe<String>;
   friend?: Maybe<String>;
 }
