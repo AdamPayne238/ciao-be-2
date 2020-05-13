@@ -21,14 +21,14 @@ type BatchPayload {
 
 type Chat {
   id: ID!
+  user: String!
+  friend: String!
   isPending: Boolean!
   isAccepted: Boolean!
   isDenied: Boolean!
   createdAt: DateTime!
   updatedAt: DateTime!
   messages: Message
-  user: String
-  friend: String
 }
 
 type ChatConnection {
@@ -39,12 +39,12 @@ type ChatConnection {
 
 input ChatCreateInput {
   id: ID
+  user: String!
+  friend: String!
   isPending: Boolean
   isAccepted: Boolean
   isDenied: Boolean
   messages: MessageCreateOneInput
-  user: String
-  friend: String
 }
 
 type ChatEdge {
@@ -55,6 +55,10 @@ type ChatEdge {
 enum ChatOrderByInput {
   id_ASC
   id_DESC
+  user_ASC
+  user_DESC
+  friend_ASC
+  friend_DESC
   isPending_ASC
   isPending_DESC
   isAccepted_ASC
@@ -65,21 +69,17 @@ enum ChatOrderByInput {
   createdAt_DESC
   updatedAt_ASC
   updatedAt_DESC
-  user_ASC
-  user_DESC
-  friend_ASC
-  friend_DESC
 }
 
 type ChatPreviousValues {
   id: ID!
+  user: String!
+  friend: String!
   isPending: Boolean!
   isAccepted: Boolean!
   isDenied: Boolean!
   createdAt: DateTime!
   updatedAt: DateTime!
-  user: String
-  friend: String
 }
 
 type ChatSubscriptionPayload {
@@ -101,20 +101,20 @@ input ChatSubscriptionWhereInput {
 }
 
 input ChatUpdateInput {
+  user: String
+  friend: String
   isPending: Boolean
   isAccepted: Boolean
   isDenied: Boolean
   messages: MessageUpdateOneInput
-  user: String
-  friend: String
 }
 
 input ChatUpdateManyMutationInput {
+  user: String
+  friend: String
   isPending: Boolean
   isAccepted: Boolean
   isDenied: Boolean
-  user: String
-  friend: String
 }
 
 input ChatWhereInput {
@@ -132,29 +132,6 @@ input ChatWhereInput {
   id_not_starts_with: ID
   id_ends_with: ID
   id_not_ends_with: ID
-  isPending: Boolean
-  isPending_not: Boolean
-  isAccepted: Boolean
-  isAccepted_not: Boolean
-  isDenied: Boolean
-  isDenied_not: Boolean
-  createdAt: DateTime
-  createdAt_not: DateTime
-  createdAt_in: [DateTime!]
-  createdAt_not_in: [DateTime!]
-  createdAt_lt: DateTime
-  createdAt_lte: DateTime
-  createdAt_gt: DateTime
-  createdAt_gte: DateTime
-  updatedAt: DateTime
-  updatedAt_not: DateTime
-  updatedAt_in: [DateTime!]
-  updatedAt_not_in: [DateTime!]
-  updatedAt_lt: DateTime
-  updatedAt_lte: DateTime
-  updatedAt_gt: DateTime
-  updatedAt_gte: DateTime
-  messages: MessageWhereInput
   user: String
   user_not: String
   user_in: [String!]
@@ -183,6 +160,29 @@ input ChatWhereInput {
   friend_not_starts_with: String
   friend_ends_with: String
   friend_not_ends_with: String
+  isPending: Boolean
+  isPending_not: Boolean
+  isAccepted: Boolean
+  isAccepted_not: Boolean
+  isDenied: Boolean
+  isDenied_not: Boolean
+  createdAt: DateTime
+  createdAt_not: DateTime
+  createdAt_in: [DateTime!]
+  createdAt_not_in: [DateTime!]
+  createdAt_lt: DateTime
+  createdAt_lte: DateTime
+  createdAt_gt: DateTime
+  createdAt_gte: DateTime
+  updatedAt: DateTime
+  updatedAt_not: DateTime
+  updatedAt_in: [DateTime!]
+  updatedAt_not_in: [DateTime!]
+  updatedAt_lt: DateTime
+  updatedAt_lte: DateTime
+  updatedAt_gt: DateTime
+  updatedAt_gte: DateTime
+  messages: MessageWhereInput
   AND: [ChatWhereInput!]
   OR: [ChatWhereInput!]
   NOT: [ChatWhereInput!]

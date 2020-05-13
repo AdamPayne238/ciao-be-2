@@ -182,6 +182,10 @@ export interface ClientConstructor<T> {
 export type ChatOrderByInput =
   | "id_ASC"
   | "id_DESC"
+  | "user_ASC"
+  | "user_DESC"
+  | "friend_ASC"
+  | "friend_DESC"
   | "isPending_ASC"
   | "isPending_DESC"
   | "isAccepted_ASC"
@@ -191,11 +195,7 @@ export type ChatOrderByInput =
   | "createdAt_ASC"
   | "createdAt_DESC"
   | "updatedAt_ASC"
-  | "updatedAt_DESC"
-  | "user_ASC"
-  | "user_DESC"
-  | "friend_ASC"
-  | "friend_DESC";
+  | "updatedAt_DESC";
 
 export type MessageOrderByInput =
   | "id_ASC"
@@ -222,11 +222,11 @@ export type UserOrderByInput =
   | "password_DESC";
 
 export interface ChatUpdateManyMutationInput {
+  user?: Maybe<String>;
+  friend?: Maybe<String>;
   isPending?: Maybe<Boolean>;
   isAccepted?: Maybe<Boolean>;
   isDenied?: Maybe<Boolean>;
-  user?: Maybe<String>;
-  friend?: Maybe<String>;
 }
 
 export type ChatWhereUniqueInput = AtLeastOne<{
@@ -253,29 +253,6 @@ export interface ChatWhereInput {
   id_not_starts_with?: Maybe<ID_Input>;
   id_ends_with?: Maybe<ID_Input>;
   id_not_ends_with?: Maybe<ID_Input>;
-  isPending?: Maybe<Boolean>;
-  isPending_not?: Maybe<Boolean>;
-  isAccepted?: Maybe<Boolean>;
-  isAccepted_not?: Maybe<Boolean>;
-  isDenied?: Maybe<Boolean>;
-  isDenied_not?: Maybe<Boolean>;
-  createdAt?: Maybe<DateTimeInput>;
-  createdAt_not?: Maybe<DateTimeInput>;
-  createdAt_in?: Maybe<DateTimeInput[] | DateTimeInput>;
-  createdAt_not_in?: Maybe<DateTimeInput[] | DateTimeInput>;
-  createdAt_lt?: Maybe<DateTimeInput>;
-  createdAt_lte?: Maybe<DateTimeInput>;
-  createdAt_gt?: Maybe<DateTimeInput>;
-  createdAt_gte?: Maybe<DateTimeInput>;
-  updatedAt?: Maybe<DateTimeInput>;
-  updatedAt_not?: Maybe<DateTimeInput>;
-  updatedAt_in?: Maybe<DateTimeInput[] | DateTimeInput>;
-  updatedAt_not_in?: Maybe<DateTimeInput[] | DateTimeInput>;
-  updatedAt_lt?: Maybe<DateTimeInput>;
-  updatedAt_lte?: Maybe<DateTimeInput>;
-  updatedAt_gt?: Maybe<DateTimeInput>;
-  updatedAt_gte?: Maybe<DateTimeInput>;
-  messages?: Maybe<MessageWhereInput>;
   user?: Maybe<String>;
   user_not?: Maybe<String>;
   user_in?: Maybe<String[] | String>;
@@ -304,6 +281,29 @@ export interface ChatWhereInput {
   friend_not_starts_with?: Maybe<String>;
   friend_ends_with?: Maybe<String>;
   friend_not_ends_with?: Maybe<String>;
+  isPending?: Maybe<Boolean>;
+  isPending_not?: Maybe<Boolean>;
+  isAccepted?: Maybe<Boolean>;
+  isAccepted_not?: Maybe<Boolean>;
+  isDenied?: Maybe<Boolean>;
+  isDenied_not?: Maybe<Boolean>;
+  createdAt?: Maybe<DateTimeInput>;
+  createdAt_not?: Maybe<DateTimeInput>;
+  createdAt_in?: Maybe<DateTimeInput[] | DateTimeInput>;
+  createdAt_not_in?: Maybe<DateTimeInput[] | DateTimeInput>;
+  createdAt_lt?: Maybe<DateTimeInput>;
+  createdAt_lte?: Maybe<DateTimeInput>;
+  createdAt_gt?: Maybe<DateTimeInput>;
+  createdAt_gte?: Maybe<DateTimeInput>;
+  updatedAt?: Maybe<DateTimeInput>;
+  updatedAt_not?: Maybe<DateTimeInput>;
+  updatedAt_in?: Maybe<DateTimeInput[] | DateTimeInput>;
+  updatedAt_not_in?: Maybe<DateTimeInput[] | DateTimeInput>;
+  updatedAt_lt?: Maybe<DateTimeInput>;
+  updatedAt_lte?: Maybe<DateTimeInput>;
+  updatedAt_gt?: Maybe<DateTimeInput>;
+  updatedAt_gte?: Maybe<DateTimeInput>;
+  messages?: Maybe<MessageWhereInput>;
   AND?: Maybe<ChatWhereInput[] | ChatWhereInput>;
   OR?: Maybe<ChatWhereInput[] | ChatWhereInput>;
   NOT?: Maybe<ChatWhereInput[] | ChatWhereInput>;
@@ -349,12 +349,12 @@ export interface MessageUpdateInput {
 }
 
 export interface ChatUpdateInput {
+  user?: Maybe<String>;
+  friend?: Maybe<String>;
   isPending?: Maybe<Boolean>;
   isAccepted?: Maybe<Boolean>;
   isDenied?: Maybe<Boolean>;
   messages?: Maybe<MessageUpdateOneInput>;
-  user?: Maybe<String>;
-  friend?: Maybe<String>;
 }
 
 export type MessageWhereUniqueInput = AtLeastOne<{
@@ -495,12 +495,12 @@ export interface MessageWhereInput {
 
 export interface ChatCreateInput {
   id?: Maybe<ID_Input>;
+  user: String;
+  friend: String;
   isPending?: Maybe<Boolean>;
   isAccepted?: Maybe<Boolean>;
   isDenied?: Maybe<Boolean>;
   messages?: Maybe<MessageCreateOneInput>;
-  user?: Maybe<String>;
-  friend?: Maybe<String>;
 }
 
 export interface MessageCreateOneInput {
@@ -767,55 +767,36 @@ export interface MessageEdgeSubscription
   cursor: () => Promise<AsyncIterator<String>>;
 }
 
-export interface Chat {
+export interface Message {
   id: ID_Output;
-  isPending: Boolean;
-  isAccepted: Boolean;
-  isDenied: Boolean;
   createdAt: DateTimeOutput;
-  updatedAt: DateTimeOutput;
+  text: String;
   user?: String;
-  friend?: String;
 }
 
-export interface ChatPromise extends Promise<Chat>, Fragmentable {
+export interface MessagePromise extends Promise<Message>, Fragmentable {
   id: () => Promise<ID_Output>;
-  isPending: () => Promise<Boolean>;
-  isAccepted: () => Promise<Boolean>;
-  isDenied: () => Promise<Boolean>;
   createdAt: () => Promise<DateTimeOutput>;
-  updatedAt: () => Promise<DateTimeOutput>;
-  messages: <T = MessagePromise>() => T;
+  text: () => Promise<String>;
   user: () => Promise<String>;
-  friend: () => Promise<String>;
 }
 
-export interface ChatSubscription
-  extends Promise<AsyncIterator<Chat>>,
+export interface MessageSubscription
+  extends Promise<AsyncIterator<Message>>,
     Fragmentable {
   id: () => Promise<AsyncIterator<ID_Output>>;
-  isPending: () => Promise<AsyncIterator<Boolean>>;
-  isAccepted: () => Promise<AsyncIterator<Boolean>>;
-  isDenied: () => Promise<AsyncIterator<Boolean>>;
   createdAt: () => Promise<AsyncIterator<DateTimeOutput>>;
-  updatedAt: () => Promise<AsyncIterator<DateTimeOutput>>;
-  messages: <T = MessageSubscription>() => T;
+  text: () => Promise<AsyncIterator<String>>;
   user: () => Promise<AsyncIterator<String>>;
-  friend: () => Promise<AsyncIterator<String>>;
 }
 
-export interface ChatNullablePromise
-  extends Promise<Chat | null>,
+export interface MessageNullablePromise
+  extends Promise<Message | null>,
     Fragmentable {
   id: () => Promise<ID_Output>;
-  isPending: () => Promise<Boolean>;
-  isAccepted: () => Promise<Boolean>;
-  isDenied: () => Promise<Boolean>;
   createdAt: () => Promise<DateTimeOutput>;
-  updatedAt: () => Promise<DateTimeOutput>;
-  messages: <T = MessagePromise>() => T;
+  text: () => Promise<String>;
   user: () => Promise<String>;
-  friend: () => Promise<String>;
 }
 
 export interface AggregateChat {
@@ -861,39 +842,39 @@ export interface UserSubscriptionPayloadSubscription
 
 export interface ChatPreviousValues {
   id: ID_Output;
+  user: String;
+  friend: String;
   isPending: Boolean;
   isAccepted: Boolean;
   isDenied: Boolean;
   createdAt: DateTimeOutput;
   updatedAt: DateTimeOutput;
-  user?: String;
-  friend?: String;
 }
 
 export interface ChatPreviousValuesPromise
   extends Promise<ChatPreviousValues>,
     Fragmentable {
   id: () => Promise<ID_Output>;
+  user: () => Promise<String>;
+  friend: () => Promise<String>;
   isPending: () => Promise<Boolean>;
   isAccepted: () => Promise<Boolean>;
   isDenied: () => Promise<Boolean>;
   createdAt: () => Promise<DateTimeOutput>;
   updatedAt: () => Promise<DateTimeOutput>;
-  user: () => Promise<String>;
-  friend: () => Promise<String>;
 }
 
 export interface ChatPreviousValuesSubscription
   extends Promise<AsyncIterator<ChatPreviousValues>>,
     Fragmentable {
   id: () => Promise<AsyncIterator<ID_Output>>;
+  user: () => Promise<AsyncIterator<String>>;
+  friend: () => Promise<AsyncIterator<String>>;
   isPending: () => Promise<AsyncIterator<Boolean>>;
   isAccepted: () => Promise<AsyncIterator<Boolean>>;
   isDenied: () => Promise<AsyncIterator<Boolean>>;
   createdAt: () => Promise<AsyncIterator<DateTimeOutput>>;
   updatedAt: () => Promise<AsyncIterator<DateTimeOutput>>;
-  user: () => Promise<AsyncIterator<String>>;
-  friend: () => Promise<AsyncIterator<String>>;
 }
 
 export interface ChatSubscriptionPayload {
@@ -946,36 +927,55 @@ export interface MessagePreviousValuesSubscription
   user: () => Promise<AsyncIterator<String>>;
 }
 
-export interface Message {
+export interface Chat {
   id: ID_Output;
+  user: String;
+  friend: String;
+  isPending: Boolean;
+  isAccepted: Boolean;
+  isDenied: Boolean;
   createdAt: DateTimeOutput;
-  text: String;
-  user?: String;
+  updatedAt: DateTimeOutput;
 }
 
-export interface MessagePromise extends Promise<Message>, Fragmentable {
+export interface ChatPromise extends Promise<Chat>, Fragmentable {
   id: () => Promise<ID_Output>;
-  createdAt: () => Promise<DateTimeOutput>;
-  text: () => Promise<String>;
   user: () => Promise<String>;
+  friend: () => Promise<String>;
+  isPending: () => Promise<Boolean>;
+  isAccepted: () => Promise<Boolean>;
+  isDenied: () => Promise<Boolean>;
+  createdAt: () => Promise<DateTimeOutput>;
+  updatedAt: () => Promise<DateTimeOutput>;
+  messages: <T = MessagePromise>() => T;
 }
 
-export interface MessageSubscription
-  extends Promise<AsyncIterator<Message>>,
+export interface ChatSubscription
+  extends Promise<AsyncIterator<Chat>>,
     Fragmentable {
   id: () => Promise<AsyncIterator<ID_Output>>;
-  createdAt: () => Promise<AsyncIterator<DateTimeOutput>>;
-  text: () => Promise<AsyncIterator<String>>;
   user: () => Promise<AsyncIterator<String>>;
+  friend: () => Promise<AsyncIterator<String>>;
+  isPending: () => Promise<AsyncIterator<Boolean>>;
+  isAccepted: () => Promise<AsyncIterator<Boolean>>;
+  isDenied: () => Promise<AsyncIterator<Boolean>>;
+  createdAt: () => Promise<AsyncIterator<DateTimeOutput>>;
+  updatedAt: () => Promise<AsyncIterator<DateTimeOutput>>;
+  messages: <T = MessageSubscription>() => T;
 }
 
-export interface MessageNullablePromise
-  extends Promise<Message | null>,
+export interface ChatNullablePromise
+  extends Promise<Chat | null>,
     Fragmentable {
   id: () => Promise<ID_Output>;
-  createdAt: () => Promise<DateTimeOutput>;
-  text: () => Promise<String>;
   user: () => Promise<String>;
+  friend: () => Promise<String>;
+  isPending: () => Promise<Boolean>;
+  isAccepted: () => Promise<Boolean>;
+  isDenied: () => Promise<Boolean>;
+  createdAt: () => Promise<DateTimeOutput>;
+  updatedAt: () => Promise<DateTimeOutput>;
+  messages: <T = MessagePromise>() => T;
 }
 
 export interface ChatEdge {
@@ -1062,11 +1062,6 @@ export type ID_Output = string;
 export type Long = string;
 
 /*
-The `String` scalar type represents textual data, represented as UTF-8 character sequences. The String type is most often used by GraphQL to represent free-form human-readable text.
-*/
-export type String = string;
-
-/*
 DateTime scalar input type, allowing Date
 */
 export type DateTimeInput = Date | string;
@@ -1080,6 +1075,11 @@ export type DateTimeOutput = string;
 The `Boolean` scalar type represents `true` or `false`.
 */
 export type Boolean = boolean;
+
+/*
+The `String` scalar type represents textual data, represented as UTF-8 character sequences. The String type is most often used by GraphQL to represent free-form human-readable text.
+*/
+export type String = string;
 
 /**
  * Model Metadata

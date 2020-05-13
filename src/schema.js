@@ -13,14 +13,14 @@ type User {
 
 type Chat {
     id: ID!
+    user: User!
+    friend: User!
     isPending: Boolean!
     isAccepted: Boolean!
     isDenied: Boolean!
     createdAt: DateTime!
     updatedAt: DateTime!
     messages: Message
-    user: User!
-    friend: User!
 }
 
 type Message {
@@ -37,15 +37,7 @@ type Query {
     users: [User!]!
 
     chat(id: String!): Chat!
-    chats(
-        id: ID!
-        isPending: Boolean!
-        isAccepted: Boolean!
-        isDenied: Boolean!
-        createdAt: DateTime!
-        updatedAt: DateTime!
-        messages: String!
-    ): Chat!
+    chats: [Chat!]!
 
     message(id: String!): Message!
     messages(
