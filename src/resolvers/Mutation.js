@@ -1,7 +1,9 @@
 
 const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
-const { APP_SECRET, getUserId } = require('../utils')
+
+// REMOVED APP_SECRET FROM IMPORTS
+const { getUserId } = require('../utils')
 
 // Mutation Create Chat
 function createChat(_parent, args, context){
