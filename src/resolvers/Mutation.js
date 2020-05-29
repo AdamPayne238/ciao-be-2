@@ -2,7 +2,6 @@
 const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
 
-// REMOVED APP_SECRET FROM IMPORTS
 const { getUserId } = require('../utils')
 
 // Mutation Create Chat
