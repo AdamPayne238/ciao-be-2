@@ -47,6 +47,17 @@ type Query {
         user: String!
     ): Message!
 
+
+    # FRIEND
+    requestedChatFriend: [Chat!]
+    acceptedChatFriend: [Chat!]
+    deniedChatFriend: [Chat!]
+
+    # USER
+    requestedChatUser: [Chat!]
+    acceptedChatUser: [Chat!]
+    deniedChatUser: [Chat!]
+
 }
 
 type Mutation {
