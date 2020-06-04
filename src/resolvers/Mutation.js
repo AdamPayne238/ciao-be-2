@@ -11,7 +11,7 @@ function createChat(_parent, args, context){
 
     return context.prisma.createChat({
         friend: args.friend,
-        user: userId
+        user: { id: userId }
     })
 }
 
