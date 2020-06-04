@@ -2,7 +2,7 @@
 const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
 
-const { getUserId, APP_SECRET} = require('../utils')
+const { getUserId, APP_SECRET } = require('../utils')
 
 // Mutation Create Chat
 function createChat(_parent, args, context){
@@ -11,7 +11,7 @@ function createChat(_parent, args, context){
 
     return context.prisma.createChat({
         friend: args.friend,
-        user: { id: userId }
+        user: userId
     })
 }
 
