@@ -7,11 +7,11 @@ const { getUserId, APP_SECRET } = require('../utils')
 // Mutation Create Chat
 function createChat(_parent, args, context){
      
-    // const userId = getUserId(context)
+    const userId = getUserId(context)
 
     return context.prisma.createChat({
         friend: args.friend,
-        // user: userId
+        user: userId
     })
 }
 
