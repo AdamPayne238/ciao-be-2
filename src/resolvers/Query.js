@@ -41,10 +41,10 @@ function messages(_parent, args, context){
 
 // REQUESTED CHAT FRIEND NOTIFICATION
 function requestedChatFriend(_parent, args, context){
-    const userID = getUserId(context)
+    const userId = getUserId(context)
     const reqArgs = {
         where: {
-            AND: [{ friend: userID }, { isPending: true }, { isAccepted: false }, { isDenied: false}]
+            AND: [{ friend: userId }, { isPending: true }, { isAccepted: false }, { isDenied: false}]
         }
     }
     return context.prisma.chats(reqArgs)
@@ -52,10 +52,10 @@ function requestedChatFriend(_parent, args, context){
 
 // ACCEPTED CHAT FRIEND NOTIFICATION
 function acceptedChatFriend(_parent, args, context){
-    const userID = getUserId(context)
+    const userId = getUserId(context)
     const reqArgs = {
         where: {
-            AND: [{ friend: userID }, { isPending: false }, { isAccepted: true }, { isDenied: false}]
+            AND: [{ friend: userId }, { isPending: false }, { isAccepted: true }, { isDenied: false}]
         }
     }
     return context.prisma.chats(reqArgs)
@@ -63,10 +63,10 @@ function acceptedChatFriend(_parent, args, context){
 
 //DENIED CHAT FRIEND NOTIFICATION
 function deniedChatFriend(_parent, args, context){
-    const userID = getUserId(context)
+    const userId = getUserId(context)
     const reqArgs = {
         where: {
-            AND: [{ friend: userID }, { isPending: false }, { isAccepted: false }, { isDenied: true}]
+            AND: [{ friend: userId }, { isPending: false }, { isAccepted: false }, { isDenied: true}]
         }
     }
     return context.prisma.chats(reqArgs)
@@ -78,10 +78,10 @@ function deniedChatFriend(_parent, args, context){
 
 // REQUESTED CHAT USER NOTIFICATION
 function requestedChatUser(_parent, args, context){
-    const userID = getUserId(context)
+    const userId = getUserId(context)
     const reqArgs = {
         where: {
-            AND: [{ user: userID }, { isPending: true }, { isAccepted: false }, { isDenied: false}]
+            AND: [{ user: userId }, { isPending: true }, { isAccepted: false }, { isDenied: false}]
         }
     }
     return context.prisma.chats(reqArgs)
@@ -89,10 +89,10 @@ function requestedChatUser(_parent, args, context){
 
 // ACCEPTED CHAT USER NOTIFCATION
 function acceptedChatUser(_parent, args, context){
-    const userID = getUserId(context)
+    const userId = getUserId(context)
     const reqArgs = {
         where: {
-            AND: [{ user: userID }, { isPending: false }, { isAccepted: true }, { isDenied: false}]
+            AND: [{ user: userId }, { isPending: false }, { isAccepted: true }, { isDenied: false}]
         }
     }
     return context.prisma.chats(reqArgs)
@@ -100,10 +100,10 @@ function acceptedChatUser(_parent, args, context){
 
 // DENIED CHAT USER NOTIFICATION
 function deniedChatUser(_parent, args, context){
-    const userID = getUserId(context)
+    const userId = getUserId(context)
     const reqArgs = {
         where: {
-            AND: [{ user: userID }, { isPending: false }, { isAccepted: false }, { isDenied: true}]
+            AND: [{ user: userId }, { isPending: false }, { isAccepted: false }, { isDenied: true}]
         }
     }
     return context.prisma.chats(reqArgs)
