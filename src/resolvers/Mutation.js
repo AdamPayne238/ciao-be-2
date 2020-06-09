@@ -18,31 +18,31 @@ function createChat(_parent, args, context){
 // Mutation Delete Chat by ID
 function deleteChat(_parent, args, context){
     
-    const userID = getUserId(context)
+    const userId = getUserId(context)
 
     return context.prisma.deleteChat({
-        user: userID
+        user: userId
     })
 }
 
 // Mutation Create Message
 function createMessage(_parent, args, context){
 
-    const userID = getUserId(context)
+    const userId = getUserId(context)
 
     return context.prisma.createMessage({
         text: args.text,
-        user: userID
+        user: userId
     })
 }
 
 // Mutation Delete Message by ID
 function deleteMessage(_parent, args, context){
      
-    const userID = getUserId(context)
+    const userId = getUserId(context)
 
     return context.prisma.deleteMessage({
-        user: userID,
+        user: userId,
     })
 }
 
