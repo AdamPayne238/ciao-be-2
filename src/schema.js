@@ -9,15 +9,12 @@ type User {
     first_name: String!
     last_name: String!
     email: String!
+    chats: [Chat!]
 }
 
 type Chat {
     id: ID!
-    user: User!
-    friend: User!
-    isPending: Boolean!
-    isAccepted: Boolean!
-    isDenied: Boolean!
+    participants: [User!]
     createdAt: DateTime!
     updatedAt: DateTime!
     messages: Message
@@ -63,7 +60,7 @@ type Query {
 type Mutation {
 
     createChat(
-        friend: String!
+        participants: String!
     ): Chat!
 
     deleteChat(
