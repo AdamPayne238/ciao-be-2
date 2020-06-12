@@ -21,8 +21,7 @@ type BatchPayload {
 
 type Chat {
   id: ID!
-  user: String!
-  friend: String!
+  participants(where: UserWhereInput, orderBy: UserOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [User!]
   isPending: Boolean!
   isAccepted: Boolean!
   isDenied: Boolean!
@@ -39,8 +38,20 @@ type ChatConnection {
 
 input ChatCreateInput {
   id: ID
-  user: String!
-  friend: String!
+  participants: UserCreateManyWithoutChatsInput
+  isPending: Boolean
+  isAccepted: Boolean
+  isDenied: Boolean
+  messages: MessageCreateOneInput
+}
+
+input ChatCreateManyWithoutParticipantsInput {
+  create: [ChatCreateWithoutParticipantsInput!]
+  connect: [ChatWhereUniqueInput!]
+}
+
+input ChatCreateWithoutParticipantsInput {
+  id: ID
   isPending: Boolean
   isAccepted: Boolean
   isDenied: Boolean
@@ -55,10 +66,6 @@ type ChatEdge {
 enum ChatOrderByInput {
   id_ASC
   id_DESC
-  user_ASC
-  user_DESC
-  friend_ASC
-  friend_DESC
   isPending_ASC
   isPending_DESC
   isAccepted_ASC
@@ -73,13 +80,53 @@ enum ChatOrderByInput {
 
 type ChatPreviousValues {
   id: ID!
-  user: String!
-  friend: String!
   isPending: Boolean!
   isAccepted: Boolean!
   isDenied: Boolean!
   createdAt: DateTime!
   updatedAt: DateTime!
+}
+
+input ChatScalarWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  isPending: Boolean
+  isPending_not: Boolean
+  isAccepted: Boolean
+  isAccepted_not: Boolean
+  isDenied: Boolean
+  isDenied_not: Boolean
+  createdAt: DateTime
+  createdAt_not: DateTime
+  createdAt_in: [DateTime!]
+  createdAt_not_in: [DateTime!]
+  createdAt_lt: DateTime
+  createdAt_lte: DateTime
+  createdAt_gt: DateTime
+  createdAt_gte: DateTime
+  updatedAt: DateTime
+  updatedAt_not: DateTime
+  updatedAt_in: [DateTime!]
+  updatedAt_not_in: [DateTime!]
+  updatedAt_lt: DateTime
+  updatedAt_lte: DateTime
+  updatedAt_gt: DateTime
+  updatedAt_gte: DateTime
+  AND: [ChatScalarWhereInput!]
+  OR: [ChatScalarWhereInput!]
+  NOT: [ChatScalarWhereInput!]
 }
 
 type ChatSubscriptionPayload {
@@ -101,20 +148,58 @@ input ChatSubscriptionWhereInput {
 }
 
 input ChatUpdateInput {
-  user: String
-  friend: String
+  participants: UserUpdateManyWithoutChatsInput
   isPending: Boolean
   isAccepted: Boolean
   isDenied: Boolean
   messages: MessageUpdateOneInput
 }
 
-input ChatUpdateManyMutationInput {
-  user: String
-  friend: String
+input ChatUpdateManyDataInput {
   isPending: Boolean
   isAccepted: Boolean
   isDenied: Boolean
+}
+
+input ChatUpdateManyMutationInput {
+  isPending: Boolean
+  isAccepted: Boolean
+  isDenied: Boolean
+}
+
+input ChatUpdateManyWithoutParticipantsInput {
+  create: [ChatCreateWithoutParticipantsInput!]
+  delete: [ChatWhereUniqueInput!]
+  connect: [ChatWhereUniqueInput!]
+  set: [ChatWhereUniqueInput!]
+  disconnect: [ChatWhereUniqueInput!]
+  update: [ChatUpdateWithWhereUniqueWithoutParticipantsInput!]
+  upsert: [ChatUpsertWithWhereUniqueWithoutParticipantsInput!]
+  deleteMany: [ChatScalarWhereInput!]
+  updateMany: [ChatUpdateManyWithWhereNestedInput!]
+}
+
+input ChatUpdateManyWithWhereNestedInput {
+  where: ChatScalarWhereInput!
+  data: ChatUpdateManyDataInput!
+}
+
+input ChatUpdateWithoutParticipantsDataInput {
+  isPending: Boolean
+  isAccepted: Boolean
+  isDenied: Boolean
+  messages: MessageUpdateOneInput
+}
+
+input ChatUpdateWithWhereUniqueWithoutParticipantsInput {
+  where: ChatWhereUniqueInput!
+  data: ChatUpdateWithoutParticipantsDataInput!
+}
+
+input ChatUpsertWithWhereUniqueWithoutParticipantsInput {
+  where: ChatWhereUniqueInput!
+  update: ChatUpdateWithoutParticipantsDataInput!
+  create: ChatCreateWithoutParticipantsInput!
 }
 
 input ChatWhereInput {
@@ -132,34 +217,9 @@ input ChatWhereInput {
   id_not_starts_with: ID
   id_ends_with: ID
   id_not_ends_with: ID
-  user: String
-  user_not: String
-  user_in: [String!]
-  user_not_in: [String!]
-  user_lt: String
-  user_lte: String
-  user_gt: String
-  user_gte: String
-  user_contains: String
-  user_not_contains: String
-  user_starts_with: String
-  user_not_starts_with: String
-  user_ends_with: String
-  user_not_ends_with: String
-  friend: String
-  friend_not: String
-  friend_in: [String!]
-  friend_not_in: [String!]
-  friend_lt: String
-  friend_lte: String
-  friend_gt: String
-  friend_gte: String
-  friend_contains: String
-  friend_not_contains: String
-  friend_starts_with: String
-  friend_not_starts_with: String
-  friend_ends_with: String
-  friend_not_ends_with: String
+  participants_every: UserWhereInput
+  participants_some: UserWhereInput
+  participants_none: UserWhereInput
   isPending: Boolean
   isPending_not: Boolean
   isAccepted: Boolean
@@ -413,6 +473,7 @@ type User {
   last_name: String!
   email: String!
   password: String!
+  chats(where: ChatWhereInput, orderBy: ChatOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Chat!]
 }
 
 type UserConnection {
@@ -422,6 +483,20 @@ type UserConnection {
 }
 
 input UserCreateInput {
+  id: ID
+  first_name: String!
+  last_name: String!
+  email: String!
+  password: String!
+  chats: ChatCreateManyWithoutParticipantsInput
+}
+
+input UserCreateManyWithoutChatsInput {
+  create: [UserCreateWithoutChatsInput!]
+  connect: [UserWhereUniqueInput!]
+}
+
+input UserCreateWithoutChatsInput {
   id: ID
   first_name: String!
   last_name: String!
@@ -455,6 +530,82 @@ type UserPreviousValues {
   password: String!
 }
 
+input UserScalarWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  first_name: String
+  first_name_not: String
+  first_name_in: [String!]
+  first_name_not_in: [String!]
+  first_name_lt: String
+  first_name_lte: String
+  first_name_gt: String
+  first_name_gte: String
+  first_name_contains: String
+  first_name_not_contains: String
+  first_name_starts_with: String
+  first_name_not_starts_with: String
+  first_name_ends_with: String
+  first_name_not_ends_with: String
+  last_name: String
+  last_name_not: String
+  last_name_in: [String!]
+  last_name_not_in: [String!]
+  last_name_lt: String
+  last_name_lte: String
+  last_name_gt: String
+  last_name_gte: String
+  last_name_contains: String
+  last_name_not_contains: String
+  last_name_starts_with: String
+  last_name_not_starts_with: String
+  last_name_ends_with: String
+  last_name_not_ends_with: String
+  email: String
+  email_not: String
+  email_in: [String!]
+  email_not_in: [String!]
+  email_lt: String
+  email_lte: String
+  email_gt: String
+  email_gte: String
+  email_contains: String
+  email_not_contains: String
+  email_starts_with: String
+  email_not_starts_with: String
+  email_ends_with: String
+  email_not_ends_with: String
+  password: String
+  password_not: String
+  password_in: [String!]
+  password_not_in: [String!]
+  password_lt: String
+  password_lte: String
+  password_gt: String
+  password_gte: String
+  password_contains: String
+  password_not_contains: String
+  password_starts_with: String
+  password_not_starts_with: String
+  password_ends_with: String
+  password_not_ends_with: String
+  AND: [UserScalarWhereInput!]
+  OR: [UserScalarWhereInput!]
+  NOT: [UserScalarWhereInput!]
+}
+
 type UserSubscriptionPayload {
   mutation: MutationType!
   node: User
@@ -478,6 +629,14 @@ input UserUpdateInput {
   last_name: String
   email: String
   password: String
+  chats: ChatUpdateManyWithoutParticipantsInput
+}
+
+input UserUpdateManyDataInput {
+  first_name: String
+  last_name: String
+  email: String
+  password: String
 }
 
 input UserUpdateManyMutationInput {
@@ -485,6 +644,41 @@ input UserUpdateManyMutationInput {
   last_name: String
   email: String
   password: String
+}
+
+input UserUpdateManyWithoutChatsInput {
+  create: [UserCreateWithoutChatsInput!]
+  delete: [UserWhereUniqueInput!]
+  connect: [UserWhereUniqueInput!]
+  set: [UserWhereUniqueInput!]
+  disconnect: [UserWhereUniqueInput!]
+  update: [UserUpdateWithWhereUniqueWithoutChatsInput!]
+  upsert: [UserUpsertWithWhereUniqueWithoutChatsInput!]
+  deleteMany: [UserScalarWhereInput!]
+  updateMany: [UserUpdateManyWithWhereNestedInput!]
+}
+
+input UserUpdateManyWithWhereNestedInput {
+  where: UserScalarWhereInput!
+  data: UserUpdateManyDataInput!
+}
+
+input UserUpdateWithoutChatsDataInput {
+  first_name: String
+  last_name: String
+  email: String
+  password: String
+}
+
+input UserUpdateWithWhereUniqueWithoutChatsInput {
+  where: UserWhereUniqueInput!
+  data: UserUpdateWithoutChatsDataInput!
+}
+
+input UserUpsertWithWhereUniqueWithoutChatsInput {
+  where: UserWhereUniqueInput!
+  update: UserUpdateWithoutChatsDataInput!
+  create: UserCreateWithoutChatsInput!
 }
 
 input UserWhereInput {
@@ -558,6 +752,9 @@ input UserWhereInput {
   password_not_starts_with: String
   password_ends_with: String
   password_not_ends_with: String
+  chats_every: ChatWhereInput
+  chats_some: ChatWhereInput
+  chats_none: ChatWhereInput
   AND: [UserWhereInput!]
   OR: [UserWhereInput!]
   NOT: [UserWhereInput!]

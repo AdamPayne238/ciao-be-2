@@ -4,12 +4,12 @@ type User {
   last_name: String!
   email: String! @unique
   password: String!
+  chats: [Chat!]
 }
 
 type Chat {
   id: ID! @id
-  user: String!
-  friend: String!
+  participants: [User!]
   isPending: Boolean! @default(value: true)
   isAccepted: Boolean! @default(value: false)
   isDenied: Boolean! @default(value: false)
