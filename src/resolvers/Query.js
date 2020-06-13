@@ -1,3 +1,5 @@
+
+// ADD THIS FOR AUTH GATE on QUERIES
 const { getUserId } = require('../utils')
 
 // TEST SERVER / INFO
@@ -35,7 +37,20 @@ function messages(_parent, args, context){
     return context.prisma.messages()
 }
 
+// GET LOGGED IN USERS CHATS
+function getUserChats(_parent, args, context){
 
+    const userId = getUserId(context)
+
+    return context.prisma.chats({
+        participants: {
+            connect: [
+             {id: args.participants},
+              {id: userId}
+            ]
+          }
+    })
+}
 
 
 module.exports = {
@@ -45,5 +60,6 @@ module.exports = {
     chat,
     chats,
     message,
-    messages
+    messages,
+    getUserChats
 }
