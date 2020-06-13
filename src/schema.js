@@ -44,6 +44,8 @@ type Query {
         user: String!
     ): Message!
 
+    getUserChats(participants: String!): Chat!
+
 }
 
 type Mutation {

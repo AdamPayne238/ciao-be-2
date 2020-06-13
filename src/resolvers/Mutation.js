@@ -9,9 +9,6 @@ function createChat(_parent, args, context){
      
     const userId = getUserId(context)
 
-    // return context.prisma.createChat({
-    //     participants: {connect: [args.participants, userId]},
-    // })
     return context.prisma.createChat({
         participants: {
           connect: [
