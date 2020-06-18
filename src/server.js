@@ -5,11 +5,13 @@ const typeDefs = require('./schema')
 const Query = require('./resolvers/Query')
 const Mutation = require('./resolvers/Mutation')
 const Chat = require('./resolvers/Chat')
+const User = require('./resolvers/User')
 
 const resolvers = {
     Query,
     Mutation,
     Chat,
+    User,
 }
 
 const server = new GraphQLServer({
