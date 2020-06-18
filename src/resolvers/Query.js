@@ -57,13 +57,6 @@ async function me(_parent, _args, context, info) {
     return res
 }
 
-async function myChats(_parent, _args, context) {
-	return await context.prisma.chat({ id: getUserId(context) });
-}
-
-
-
-
 module.exports = {
     info,
     user,
@@ -74,5 +67,4 @@ module.exports = {
     messages,
     getUserChats,
     me,
-    myChats,
 }

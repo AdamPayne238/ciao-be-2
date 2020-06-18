@@ -46,7 +46,6 @@ type Query {
 
     getUserChats: Chat!
     me: User!
-    myChats: Chat!
 
 }
 
