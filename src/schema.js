@@ -44,7 +44,9 @@ type Query {
         user: String!
     ): Message!
 
-    getUserChats(participants: String!): Chat!
+    getUserChats: Chat!
+    me: User!
+    myChats: Chat!
 
 }
 

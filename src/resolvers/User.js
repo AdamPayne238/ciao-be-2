@@ -1,8 +1,8 @@
 
-// function __resolveReference(user, context) {
-// 	console.log(user);
-// 	return context.prisma.user({ id: user.id });
-// }
+function __resolveReference(user, context) {
+	console.log(user);
+	return context.prisma.user({ id: user.id });
+}
 
 // function user(parent, args, context){
 //     return context.prisma.chats({ where: { user: parent.id } })
@@ -12,8 +12,24 @@
 //     return context.prisma.chats({ where: { friend: parent.id } })
 // }
 
+// function participants(_parent, args, context){
+//     const res = context.prisma.chat({
+//             id: _parent.id
+//     }).participants()
+//     console.log("participants Res", res)
+//     return res
+// }
+
+// function loggedIn(parent, _args, context){
+//     return context.prisma.chats({ 
+//         where: { userId: parent.id}
+//     })
+// }
+
 module.exports = {
-    // __resolveReference,
+    __resolveReference,
     // user,
     // friend,
+    // participants,
+    // loggedIn,
 }

@@ -37,7 +37,7 @@ function messages(_parent, args, context){
     return context.prisma.messages()
 }
 
-// GET LOGGED IN USERS CHATS
+// GET LOGGED IN USERS CHATS (_NOT WORKING_)
 function getUserChats(_parent, args, context){
 
     const userId = getUserId(context)
@@ -52,6 +52,16 @@ function getUserChats(_parent, args, context){
     })
 }
 
+async function me(_parent, _args, context) {
+	return await context.prisma.user({ id: getUserId(context) }) ;
+}
+
+async function myChats(_parent, _args, context) {
+	return await context.prisma.chat({ id: getUserId(context) });
+}
+
+
+
 
 module.exports = {
     info,
@@ -61,5 +71,7 @@ module.exports = {
     chats,
     message,
     messages,
-    getUserChats
+    getUserChats,
+    me,
+    myChats,
 }
