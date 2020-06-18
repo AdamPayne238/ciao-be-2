@@ -4,6 +4,9 @@ function __resolveReference(user, context) {
 	return context.prisma.user({ id: user.id });
 }
 
+// ME helper??
+
+
 // function user(parent, args, context){
 //     return context.prisma.chats({ where: { user: parent.id } })
 // }

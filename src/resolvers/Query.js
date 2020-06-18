@@ -52,8 +52,9 @@ function getUserChats(_parent, args, context){
     })
 }
 
-async function me(_parent, _args, context) {
-	return await context.prisma.user({ id: getUserId(context) }) ;
+async function me(_parent, _args, context, info) {
+    const res = await context.prisma.user({ id: getUserId(context)}, info) 
+    return res
 }
 
 async function myChats(_parent, _args, context) {
