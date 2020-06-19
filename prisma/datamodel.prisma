@@ -9,19 +9,16 @@ type User {
 
 type Chat {
   id: ID! @id
-  participants: [User!]
-  isPending: Boolean! @default(value: true)
-  isAccepted: Boolean! @default(value: false)
-  isDenied: Boolean! @default(value: false)
   createdAt: DateTime! @createdAt
   updatedAt: DateTime! @updatedAt
-  messages: Message
-
+  participants: [User!]
+  messages: [Message!]
 }
 
 type Message {
   id: ID! @id
-  createdAt: DateTime! @createdAt
   text: String!
-  user: String
+  createdAt: DateTime! @createdAt
+  chatId: String!
+  user: [User!]
 }

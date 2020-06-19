@@ -14,17 +14,18 @@ type User {
 
 type Chat {
     id: ID!
-    participants: [User!]
     createdAt: DateTime!
     updatedAt: DateTime!
-    messages: Message
+    participants: [User!]
+    messages: [Message!]
 }
 
 type Message {
     id: ID!
-    createdAt: DateTime!
     text: String!
-    user: User!
+    createdAt: DateTime!
+    chatId: Chat!
+    user: [User!]
 }
 
 type Query {
