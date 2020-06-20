@@ -61,10 +61,8 @@ type Mutation {
     ): Chat!
 
     createMessage(
-        id: ID!
-        createdAt: DateTime!
+        chatId: String!
         text: String!
-        user: String!
     ): Message!
 
     deleteMessage(
