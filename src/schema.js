@@ -38,12 +38,7 @@ type Query {
     chats: [Chat!]!
 
     message(id: String!): Message!
-    messages(
-        id: ID!
-        createdAt: DateTime!
-        text: String!
-        user: String!
-    ): Message!
+    messages: [Message!]
 
     getUserChats: Chat!
     me: User!
