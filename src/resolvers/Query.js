@@ -18,7 +18,7 @@ function users(_parent, args, context){
 }
 
 // GET CHAT BY ID
-function chat(_parent, args, context){
+function chat(_parent, args, context, info){
     return context.prisma.chat({ id: args.id })
 }
 

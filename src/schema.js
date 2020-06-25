@@ -10,6 +10,15 @@ type User {
     last_name: String!
     email: String!
     chats: [Chat!]
+    messages: [Message!]
+    # createdAt: DateTime!
+    # friendCount: Int
+    # status: String
+    # bio: String
+    # GitHub
+    # LinkedIn
+    # Twitter
+    # LinkedIn
 }
 
 type Chat {
@@ -25,7 +34,7 @@ type Message {
     text: String!
     createdAt: DateTime!
     chatId: Chat!
-    user: [User!]
+    user: User!
 }
 
 type Query {
