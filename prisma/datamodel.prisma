@@ -12,6 +12,7 @@ type Chat {
   id: ID! @id
   createdAt: DateTime! @createdAt
   updatedAt: DateTime! @updatedAt
+  active: Boolean @default(value: false)
   participants: [User!]
   messages: [Message!]
 }
