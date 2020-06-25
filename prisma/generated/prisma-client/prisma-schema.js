@@ -23,6 +23,7 @@ type Chat {
   id: ID!
   createdAt: DateTime!
   updatedAt: DateTime!
+  active: Boolean
   participants(where: UserWhereInput, orderBy: UserOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [User!]
   messages(where: MessageWhereInput, orderBy: MessageOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Message!]
 }
@@ -35,6 +36,7 @@ type ChatConnection {
 
 input ChatCreateInput {
   id: ID
+  active: Boolean
   participants: UserCreateManyWithoutChatsInput
   messages: MessageCreateManyWithoutChatIdInput
 }
@@ -51,11 +53,13 @@ input ChatCreateOneWithoutMessagesInput {
 
 input ChatCreateWithoutMessagesInput {
   id: ID
+  active: Boolean
   participants: UserCreateManyWithoutChatsInput
 }
 
 input ChatCreateWithoutParticipantsInput {
   id: ID
+  active: Boolean
   messages: MessageCreateManyWithoutChatIdInput
 }
 
@@ -71,12 +75,15 @@ enum ChatOrderByInput {
   createdAt_DESC
   updatedAt_ASC
   updatedAt_DESC
+  active_ASC
+  active_DESC
 }
 
 type ChatPreviousValues {
   id: ID!
   createdAt: DateTime!
   updatedAt: DateTime!
+  active: Boolean
 }
 
 input ChatScalarWhereInput {
@@ -110,6 +117,8 @@ input ChatScalarWhereInput {
   updatedAt_lte: DateTime
   updatedAt_gt: DateTime
   updatedAt_gte: DateTime
+  active: Boolean
+  active_not: Boolean
   AND: [ChatScalarWhereInput!]
   OR: [ChatScalarWhereInput!]
   NOT: [ChatScalarWhereInput!]
@@ -134,8 +143,17 @@ input ChatSubscriptionWhereInput {
 }
 
 input ChatUpdateInput {
+  active: Boolean
   participants: UserUpdateManyWithoutChatsInput
   messages: MessageUpdateManyWithoutChatIdInput
+}
+
+input ChatUpdateManyDataInput {
+  active: Boolean
+}
+
+input ChatUpdateManyMutationInput {
+  active: Boolean
 }
 
 input ChatUpdateManyWithoutParticipantsInput {
@@ -147,6 +165,12 @@ input ChatUpdateManyWithoutParticipantsInput {
   update: [ChatUpdateWithWhereUniqueWithoutParticipantsInput!]
   upsert: [ChatUpsertWithWhereUniqueWithoutParticipantsInput!]
   deleteMany: [ChatScalarWhereInput!]
+  updateMany: [ChatUpdateManyWithWhereNestedInput!]
+}
+
+input ChatUpdateManyWithWhereNestedInput {
+  where: ChatScalarWhereInput!
+  data: ChatUpdateManyDataInput!
 }
 
 input ChatUpdateOneRequiredWithoutMessagesInput {
@@ -157,10 +181,12 @@ input ChatUpdateOneRequiredWithoutMessagesInput {
 }
 
 input ChatUpdateWithoutMessagesDataInput {
+  active: Boolean
   participants: UserUpdateManyWithoutChatsInput
 }
 
 input ChatUpdateWithoutParticipantsDataInput {
+  active: Boolean
   messages: MessageUpdateManyWithoutChatIdInput
 }
 
@@ -211,6 +237,8 @@ input ChatWhereInput {
   updatedAt_lte: DateTime
   updatedAt_gt: DateTime
   updatedAt_gte: DateTime
+  active: Boolean
+  active_not: Boolean
   participants_every: UserWhereInput
   participants_some: UserWhereInput
   participants_none: UserWhereInput
@@ -479,6 +507,7 @@ input MessageWhereUniqueInput {
 type Mutation {
   createChat(data: ChatCreateInput!): Chat!
   updateChat(data: ChatUpdateInput!, where: ChatWhereUniqueInput!): Chat
+  updateManyChats(data: ChatUpdateManyMutationInput!, where: ChatWhereInput): BatchPayload!
   upsertChat(where: ChatWhereUniqueInput!, create: ChatCreateInput!, update: ChatUpdateInput!): Chat!
   deleteChat(where: ChatWhereUniqueInput!): Chat
   deleteManyChats(where: ChatWhereInput): BatchPayload!

@@ -25,6 +25,7 @@ type Chat {
     id: ID!
     createdAt: DateTime!
     updatedAt: DateTime!
+    active: Boolean!
     participants: [User!]
     messages: [Message!]
 }
