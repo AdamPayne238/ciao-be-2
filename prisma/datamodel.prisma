@@ -5,6 +5,7 @@ type User {
   email: String! @unique
   password: String!
   chats: [Chat!]
+  messages: [Message!]
 }
 
 type Chat {
@@ -19,6 +20,6 @@ type Message {
   id: ID! @id
   text: String!
   createdAt: DateTime! @createdAt
-  chatId: String!
-  user: [User!]
+  chatId: Chat!
+  user: User!
 }

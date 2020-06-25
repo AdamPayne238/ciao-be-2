@@ -35,8 +35,11 @@ function createMessage(_parent, args, context){
     const userId = getUserId(context)
 
     return context.prisma.createMessage({
-        chatId: args.chatId,
         text: args.text,
+        chatId: {
+            connect: {id: args.chatId}
+        },
+        
         user: {
             connect: {id: userId}
           }
