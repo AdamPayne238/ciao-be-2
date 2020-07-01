@@ -19,14 +19,14 @@ function createChat(_parent, args, context){
       })
 }
 
-async function toggleActiveChat(parent, args, context) {
+async function toggleActiveChat(_parent, args, context) {
     const userID = getUserId
 
     const updates = {
         active: args.active
     }
 
-    return context.prisma.chat({
+    return context.prisma.toggleActiveChat({
         where: {
             id: args.id
         },
