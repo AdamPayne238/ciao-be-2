@@ -19,6 +19,20 @@ function createChat(_parent, args, context){
       })
 }
 
+async function toggleActiveChat(parent, args, context) {
+    const userID = getUserId
+
+    const updates = {
+        active: args.active
+    }
+
+    return context.prisma.chat({
+        where: {
+            id: args.id
+        },
+        data: updates
+    })
+}
 // Mutation Delete Chat by ID
 function deleteChat(_parent, args, context){
     
@@ -109,4 +123,5 @@ module.exports = {
     deleteChat,
     createMessage,
     deleteMessage,
+    toggleActiveChat,
 }

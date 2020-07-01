@@ -61,6 +61,11 @@ type Mutation {
         participants: String!
     ): Chat!
 
+    toggleActiveChat(
+        id: String
+        active: Boolean
+    ): Chat!
+
     deleteChat(
         id: String!
     ): Chat!
