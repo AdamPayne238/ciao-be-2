@@ -189,7 +189,19 @@ export type UserOrderByInput =
   | "email_ASC"
   | "email_DESC"
   | "password_ASC"
-  | "password_DESC";
+  | "password_DESC"
+  | "bio_ASC"
+  | "bio_DESC"
+  | "Status_ASC"
+  | "Status_DESC"
+  | "github_ASC"
+  | "github_DESC"
+  | "linkedin_ASC"
+  | "linkedin_DESC"
+  | "twitter_ASC"
+  | "twitter_DESC"
+  | "createdAt_ASC"
+  | "createdAt_DESC";
 
 export type ChatOrderByInput =
   | "id_ASC"
@@ -236,6 +248,11 @@ export interface UserCreateWithoutMessagesInput {
   last_name: String;
   email: String;
   password: String;
+  bio?: Maybe<String>;
+  Status?: Maybe<String>;
+  github?: Maybe<String>;
+  linkedin?: Maybe<String>;
+  twitter?: Maybe<String>;
   chats?: Maybe<ChatCreateManyWithoutParticipantsInput>;
 }
 
@@ -322,6 +339,84 @@ export interface UserWhereInput {
   password_not_starts_with?: Maybe<String>;
   password_ends_with?: Maybe<String>;
   password_not_ends_with?: Maybe<String>;
+  bio?: Maybe<String>;
+  bio_not?: Maybe<String>;
+  bio_in?: Maybe<String[] | String>;
+  bio_not_in?: Maybe<String[] | String>;
+  bio_lt?: Maybe<String>;
+  bio_lte?: Maybe<String>;
+  bio_gt?: Maybe<String>;
+  bio_gte?: Maybe<String>;
+  bio_contains?: Maybe<String>;
+  bio_not_contains?: Maybe<String>;
+  bio_starts_with?: Maybe<String>;
+  bio_not_starts_with?: Maybe<String>;
+  bio_ends_with?: Maybe<String>;
+  bio_not_ends_with?: Maybe<String>;
+  Status?: Maybe<String>;
+  Status_not?: Maybe<String>;
+  Status_in?: Maybe<String[] | String>;
+  Status_not_in?: Maybe<String[] | String>;
+  Status_lt?: Maybe<String>;
+  Status_lte?: Maybe<String>;
+  Status_gt?: Maybe<String>;
+  Status_gte?: Maybe<String>;
+  Status_contains?: Maybe<String>;
+  Status_not_contains?: Maybe<String>;
+  Status_starts_with?: Maybe<String>;
+  Status_not_starts_with?: Maybe<String>;
+  Status_ends_with?: Maybe<String>;
+  Status_not_ends_with?: Maybe<String>;
+  github?: Maybe<String>;
+  github_not?: Maybe<String>;
+  github_in?: Maybe<String[] | String>;
+  github_not_in?: Maybe<String[] | String>;
+  github_lt?: Maybe<String>;
+  github_lte?: Maybe<String>;
+  github_gt?: Maybe<String>;
+  github_gte?: Maybe<String>;
+  github_contains?: Maybe<String>;
+  github_not_contains?: Maybe<String>;
+  github_starts_with?: Maybe<String>;
+  github_not_starts_with?: Maybe<String>;
+  github_ends_with?: Maybe<String>;
+  github_not_ends_with?: Maybe<String>;
+  linkedin?: Maybe<String>;
+  linkedin_not?: Maybe<String>;
+  linkedin_in?: Maybe<String[] | String>;
+  linkedin_not_in?: Maybe<String[] | String>;
+  linkedin_lt?: Maybe<String>;
+  linkedin_lte?: Maybe<String>;
+  linkedin_gt?: Maybe<String>;
+  linkedin_gte?: Maybe<String>;
+  linkedin_contains?: Maybe<String>;
+  linkedin_not_contains?: Maybe<String>;
+  linkedin_starts_with?: Maybe<String>;
+  linkedin_not_starts_with?: Maybe<String>;
+  linkedin_ends_with?: Maybe<String>;
+  linkedin_not_ends_with?: Maybe<String>;
+  twitter?: Maybe<String>;
+  twitter_not?: Maybe<String>;
+  twitter_in?: Maybe<String[] | String>;
+  twitter_not_in?: Maybe<String[] | String>;
+  twitter_lt?: Maybe<String>;
+  twitter_lte?: Maybe<String>;
+  twitter_gt?: Maybe<String>;
+  twitter_gte?: Maybe<String>;
+  twitter_contains?: Maybe<String>;
+  twitter_not_contains?: Maybe<String>;
+  twitter_starts_with?: Maybe<String>;
+  twitter_not_starts_with?: Maybe<String>;
+  twitter_ends_with?: Maybe<String>;
+  twitter_not_ends_with?: Maybe<String>;
+  createdAt?: Maybe<DateTimeInput>;
+  createdAt_not?: Maybe<DateTimeInput>;
+  createdAt_in?: Maybe<DateTimeInput[] | DateTimeInput>;
+  createdAt_not_in?: Maybe<DateTimeInput[] | DateTimeInput>;
+  createdAt_lt?: Maybe<DateTimeInput>;
+  createdAt_lte?: Maybe<DateTimeInput>;
+  createdAt_gt?: Maybe<DateTimeInput>;
+  createdAt_gte?: Maybe<DateTimeInput>;
   chats_every?: Maybe<ChatWhereInput>;
   chats_some?: Maybe<ChatWhereInput>;
   chats_none?: Maybe<ChatWhereInput>;
@@ -361,6 +456,11 @@ export interface UserUpdateManyMutationInput {
   last_name?: Maybe<String>;
   email?: Maybe<String>;
   password?: Maybe<String>;
+  bio?: Maybe<String>;
+  Status?: Maybe<String>;
+  github?: Maybe<String>;
+  linkedin?: Maybe<String>;
+  twitter?: Maybe<String>;
 }
 
 export interface UserUpdateManyWithoutChatsInput {
@@ -389,6 +489,11 @@ export interface UserCreateInput {
   last_name: String;
   email: String;
   password: String;
+  bio?: Maybe<String>;
+  Status?: Maybe<String>;
+  github?: Maybe<String>;
+  linkedin?: Maybe<String>;
+  twitter?: Maybe<String>;
   chats?: Maybe<ChatCreateManyWithoutParticipantsInput>;
   messages?: Maybe<MessageCreateManyWithoutUserInput>;
 }
@@ -409,6 +514,11 @@ export interface UserUpdateWithoutChatsDataInput {
   last_name?: Maybe<String>;
   email?: Maybe<String>;
   password?: Maybe<String>;
+  bio?: Maybe<String>;
+  Status?: Maybe<String>;
+  github?: Maybe<String>;
+  linkedin?: Maybe<String>;
+  twitter?: Maybe<String>;
   messages?: Maybe<MessageUpdateManyWithoutUserInput>;
 }
 
@@ -743,6 +853,84 @@ export interface UserScalarWhereInput {
   password_not_starts_with?: Maybe<String>;
   password_ends_with?: Maybe<String>;
   password_not_ends_with?: Maybe<String>;
+  bio?: Maybe<String>;
+  bio_not?: Maybe<String>;
+  bio_in?: Maybe<String[] | String>;
+  bio_not_in?: Maybe<String[] | String>;
+  bio_lt?: Maybe<String>;
+  bio_lte?: Maybe<String>;
+  bio_gt?: Maybe<String>;
+  bio_gte?: Maybe<String>;
+  bio_contains?: Maybe<String>;
+  bio_not_contains?: Maybe<String>;
+  bio_starts_with?: Maybe<String>;
+  bio_not_starts_with?: Maybe<String>;
+  bio_ends_with?: Maybe<String>;
+  bio_not_ends_with?: Maybe<String>;
+  Status?: Maybe<String>;
+  Status_not?: Maybe<String>;
+  Status_in?: Maybe<String[] | String>;
+  Status_not_in?: Maybe<String[] | String>;
+  Status_lt?: Maybe<String>;
+  Status_lte?: Maybe<String>;
+  Status_gt?: Maybe<String>;
+  Status_gte?: Maybe<String>;
+  Status_contains?: Maybe<String>;
+  Status_not_contains?: Maybe<String>;
+  Status_starts_with?: Maybe<String>;
+  Status_not_starts_with?: Maybe<String>;
+  Status_ends_with?: Maybe<String>;
+  Status_not_ends_with?: Maybe<String>;
+  github?: Maybe<String>;
+  github_not?: Maybe<String>;
+  github_in?: Maybe<String[] | String>;
+  github_not_in?: Maybe<String[] | String>;
+  github_lt?: Maybe<String>;
+  github_lte?: Maybe<String>;
+  github_gt?: Maybe<String>;
+  github_gte?: Maybe<String>;
+  github_contains?: Maybe<String>;
+  github_not_contains?: Maybe<String>;
+  github_starts_with?: Maybe<String>;
+  github_not_starts_with?: Maybe<String>;
+  github_ends_with?: Maybe<String>;
+  github_not_ends_with?: Maybe<String>;
+  linkedin?: Maybe<String>;
+  linkedin_not?: Maybe<String>;
+  linkedin_in?: Maybe<String[] | String>;
+  linkedin_not_in?: Maybe<String[] | String>;
+  linkedin_lt?: Maybe<String>;
+  linkedin_lte?: Maybe<String>;
+  linkedin_gt?: Maybe<String>;
+  linkedin_gte?: Maybe<String>;
+  linkedin_contains?: Maybe<String>;
+  linkedin_not_contains?: Maybe<String>;
+  linkedin_starts_with?: Maybe<String>;
+  linkedin_not_starts_with?: Maybe<String>;
+  linkedin_ends_with?: Maybe<String>;
+  linkedin_not_ends_with?: Maybe<String>;
+  twitter?: Maybe<String>;
+  twitter_not?: Maybe<String>;
+  twitter_in?: Maybe<String[] | String>;
+  twitter_not_in?: Maybe<String[] | String>;
+  twitter_lt?: Maybe<String>;
+  twitter_lte?: Maybe<String>;
+  twitter_gt?: Maybe<String>;
+  twitter_gte?: Maybe<String>;
+  twitter_contains?: Maybe<String>;
+  twitter_not_contains?: Maybe<String>;
+  twitter_starts_with?: Maybe<String>;
+  twitter_not_starts_with?: Maybe<String>;
+  twitter_ends_with?: Maybe<String>;
+  twitter_not_ends_with?: Maybe<String>;
+  createdAt?: Maybe<DateTimeInput>;
+  createdAt_not?: Maybe<DateTimeInput>;
+  createdAt_in?: Maybe<DateTimeInput[] | DateTimeInput>;
+  createdAt_not_in?: Maybe<DateTimeInput[] | DateTimeInput>;
+  createdAt_lt?: Maybe<DateTimeInput>;
+  createdAt_lte?: Maybe<DateTimeInput>;
+  createdAt_gt?: Maybe<DateTimeInput>;
+  createdAt_gte?: Maybe<DateTimeInput>;
   AND?: Maybe<UserScalarWhereInput[] | UserScalarWhereInput>;
   OR?: Maybe<UserScalarWhereInput[] | UserScalarWhereInput>;
   NOT?: Maybe<UserScalarWhereInput[] | UserScalarWhereInput>;
@@ -769,6 +957,11 @@ export interface UserUpdateManyDataInput {
   last_name?: Maybe<String>;
   email?: Maybe<String>;
   password?: Maybe<String>;
+  bio?: Maybe<String>;
+  Status?: Maybe<String>;
+  github?: Maybe<String>;
+  linkedin?: Maybe<String>;
+  twitter?: Maybe<String>;
 }
 
 export interface MessageCreateWithoutUserInput {
@@ -816,6 +1009,11 @@ export interface UserUpdateInput {
   last_name?: Maybe<String>;
   email?: Maybe<String>;
   password?: Maybe<String>;
+  bio?: Maybe<String>;
+  Status?: Maybe<String>;
+  github?: Maybe<String>;
+  linkedin?: Maybe<String>;
+  twitter?: Maybe<String>;
   chats?: Maybe<ChatUpdateManyWithoutParticipantsInput>;
   messages?: Maybe<MessageUpdateManyWithoutUserInput>;
 }
@@ -862,6 +1060,11 @@ export interface UserUpdateWithoutMessagesDataInput {
   last_name?: Maybe<String>;
   email?: Maybe<String>;
   password?: Maybe<String>;
+  bio?: Maybe<String>;
+  Status?: Maybe<String>;
+  github?: Maybe<String>;
+  linkedin?: Maybe<String>;
+  twitter?: Maybe<String>;
   chats?: Maybe<ChatUpdateManyWithoutParticipantsInput>;
 }
 
@@ -940,6 +1143,11 @@ export interface UserCreateWithoutChatsInput {
   last_name: String;
   email: String;
   password: String;
+  bio?: Maybe<String>;
+  Status?: Maybe<String>;
+  github?: Maybe<String>;
+  linkedin?: Maybe<String>;
+  twitter?: Maybe<String>;
   messages?: Maybe<MessageCreateManyWithoutUserInput>;
 }
 
@@ -953,6 +1161,12 @@ export interface UserPreviousValues {
   last_name: String;
   email: String;
   password: String;
+  bio?: String;
+  Status?: String;
+  github?: String;
+  linkedin?: String;
+  twitter?: String;
+  createdAt: DateTimeOutput;
 }
 
 export interface UserPreviousValuesPromise
@@ -963,6 +1177,12 @@ export interface UserPreviousValuesPromise
   last_name: () => Promise<String>;
   email: () => Promise<String>;
   password: () => Promise<String>;
+  bio: () => Promise<String>;
+  Status: () => Promise<String>;
+  github: () => Promise<String>;
+  linkedin: () => Promise<String>;
+  twitter: () => Promise<String>;
+  createdAt: () => Promise<DateTimeOutput>;
 }
 
 export interface UserPreviousValuesSubscription
@@ -973,6 +1193,12 @@ export interface UserPreviousValuesSubscription
   last_name: () => Promise<AsyncIterator<String>>;
   email: () => Promise<AsyncIterator<String>>;
   password: () => Promise<AsyncIterator<String>>;
+  bio: () => Promise<AsyncIterator<String>>;
+  Status: () => Promise<AsyncIterator<String>>;
+  github: () => Promise<AsyncIterator<String>>;
+  linkedin: () => Promise<AsyncIterator<String>>;
+  twitter: () => Promise<AsyncIterator<String>>;
+  createdAt: () => Promise<AsyncIterator<DateTimeOutput>>;
 }
 
 export interface ChatEdge {
@@ -998,6 +1224,12 @@ export interface User {
   last_name: String;
   email: String;
   password: String;
+  bio?: String;
+  Status?: String;
+  github?: String;
+  linkedin?: String;
+  twitter?: String;
+  createdAt: DateTimeOutput;
 }
 
 export interface UserPromise extends Promise<User>, Fragmentable {
@@ -1006,6 +1238,12 @@ export interface UserPromise extends Promise<User>, Fragmentable {
   last_name: () => Promise<String>;
   email: () => Promise<String>;
   password: () => Promise<String>;
+  bio: () => Promise<String>;
+  Status: () => Promise<String>;
+  github: () => Promise<String>;
+  linkedin: () => Promise<String>;
+  twitter: () => Promise<String>;
+  createdAt: () => Promise<DateTimeOutput>;
   chats: <T = FragmentableArray<Chat>>(args?: {
     where?: ChatWhereInput;
     orderBy?: ChatOrderByInput;
@@ -1034,6 +1272,12 @@ export interface UserSubscription
   last_name: () => Promise<AsyncIterator<String>>;
   email: () => Promise<AsyncIterator<String>>;
   password: () => Promise<AsyncIterator<String>>;
+  bio: () => Promise<AsyncIterator<String>>;
+  Status: () => Promise<AsyncIterator<String>>;
+  github: () => Promise<AsyncIterator<String>>;
+  linkedin: () => Promise<AsyncIterator<String>>;
+  twitter: () => Promise<AsyncIterator<String>>;
+  createdAt: () => Promise<AsyncIterator<DateTimeOutput>>;
   chats: <T = Promise<AsyncIterator<ChatSubscription>>>(args?: {
     where?: ChatWhereInput;
     orderBy?: ChatOrderByInput;
@@ -1062,6 +1306,12 @@ export interface UserNullablePromise
   last_name: () => Promise<String>;
   email: () => Promise<String>;
   password: () => Promise<String>;
+  bio: () => Promise<String>;
+  Status: () => Promise<String>;
+  github: () => Promise<String>;
+  linkedin: () => Promise<String>;
+  twitter: () => Promise<String>;
+  createdAt: () => Promise<DateTimeOutput>;
   chats: <T = FragmentableArray<Chat>>(args?: {
     where?: ChatWhereInput;
     orderBy?: ChatOrderByInput;

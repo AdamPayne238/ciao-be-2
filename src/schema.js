@@ -9,16 +9,12 @@ type User {
     first_name: String!
     last_name: String!
     email: String!
+    github: String
+    linkedin: String
+    twitter: String
+    createdAt: DateTime!
     chats: [Chat!]
     messages: [Message!]
-    # createdAt: DateTime!
-    # friendCount: Int
-    # status: String
-    # bio: String
-    # GitHub
-    # LinkedIn
-    # Twitter
-    # LinkedIn
 }
 
 type Chat {
@@ -52,6 +48,8 @@ type Query {
 
     getUserChats: Chat!
     me: User!
+    selectedChat: Chat!
+    testThis: User!
 
 }
 

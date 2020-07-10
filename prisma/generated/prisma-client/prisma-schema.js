@@ -567,6 +567,12 @@ type User {
   last_name: String!
   email: String!
   password: String!
+  bio: String
+  Status: String
+  github: String
+  linkedin: String
+  twitter: String
+  createdAt: DateTime!
   chats(where: ChatWhereInput, orderBy: ChatOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Chat!]
   messages(where: MessageWhereInput, orderBy: MessageOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Message!]
 }
@@ -583,6 +589,11 @@ input UserCreateInput {
   last_name: String!
   email: String!
   password: String!
+  bio: String
+  Status: String
+  github: String
+  linkedin: String
+  twitter: String
   chats: ChatCreateManyWithoutParticipantsInput
   messages: MessageCreateManyWithoutUserInput
 }
@@ -603,6 +614,11 @@ input UserCreateWithoutChatsInput {
   last_name: String!
   email: String!
   password: String!
+  bio: String
+  Status: String
+  github: String
+  linkedin: String
+  twitter: String
   messages: MessageCreateManyWithoutUserInput
 }
 
@@ -612,6 +628,11 @@ input UserCreateWithoutMessagesInput {
   last_name: String!
   email: String!
   password: String!
+  bio: String
+  Status: String
+  github: String
+  linkedin: String
+  twitter: String
   chats: ChatCreateManyWithoutParticipantsInput
 }
 
@@ -631,6 +652,18 @@ enum UserOrderByInput {
   email_DESC
   password_ASC
   password_DESC
+  bio_ASC
+  bio_DESC
+  Status_ASC
+  Status_DESC
+  github_ASC
+  github_DESC
+  linkedin_ASC
+  linkedin_DESC
+  twitter_ASC
+  twitter_DESC
+  createdAt_ASC
+  createdAt_DESC
 }
 
 type UserPreviousValues {
@@ -639,6 +672,12 @@ type UserPreviousValues {
   last_name: String!
   email: String!
   password: String!
+  bio: String
+  Status: String
+  github: String
+  linkedin: String
+  twitter: String
+  createdAt: DateTime!
 }
 
 input UserScalarWhereInput {
@@ -712,6 +751,84 @@ input UserScalarWhereInput {
   password_not_starts_with: String
   password_ends_with: String
   password_not_ends_with: String
+  bio: String
+  bio_not: String
+  bio_in: [String!]
+  bio_not_in: [String!]
+  bio_lt: String
+  bio_lte: String
+  bio_gt: String
+  bio_gte: String
+  bio_contains: String
+  bio_not_contains: String
+  bio_starts_with: String
+  bio_not_starts_with: String
+  bio_ends_with: String
+  bio_not_ends_with: String
+  Status: String
+  Status_not: String
+  Status_in: [String!]
+  Status_not_in: [String!]
+  Status_lt: String
+  Status_lte: String
+  Status_gt: String
+  Status_gte: String
+  Status_contains: String
+  Status_not_contains: String
+  Status_starts_with: String
+  Status_not_starts_with: String
+  Status_ends_with: String
+  Status_not_ends_with: String
+  github: String
+  github_not: String
+  github_in: [String!]
+  github_not_in: [String!]
+  github_lt: String
+  github_lte: String
+  github_gt: String
+  github_gte: String
+  github_contains: String
+  github_not_contains: String
+  github_starts_with: String
+  github_not_starts_with: String
+  github_ends_with: String
+  github_not_ends_with: String
+  linkedin: String
+  linkedin_not: String
+  linkedin_in: [String!]
+  linkedin_not_in: [String!]
+  linkedin_lt: String
+  linkedin_lte: String
+  linkedin_gt: String
+  linkedin_gte: String
+  linkedin_contains: String
+  linkedin_not_contains: String
+  linkedin_starts_with: String
+  linkedin_not_starts_with: String
+  linkedin_ends_with: String
+  linkedin_not_ends_with: String
+  twitter: String
+  twitter_not: String
+  twitter_in: [String!]
+  twitter_not_in: [String!]
+  twitter_lt: String
+  twitter_lte: String
+  twitter_gt: String
+  twitter_gte: String
+  twitter_contains: String
+  twitter_not_contains: String
+  twitter_starts_with: String
+  twitter_not_starts_with: String
+  twitter_ends_with: String
+  twitter_not_ends_with: String
+  createdAt: DateTime
+  createdAt_not: DateTime
+  createdAt_in: [DateTime!]
+  createdAt_not_in: [DateTime!]
+  createdAt_lt: DateTime
+  createdAt_lte: DateTime
+  createdAt_gt: DateTime
+  createdAt_gte: DateTime
   AND: [UserScalarWhereInput!]
   OR: [UserScalarWhereInput!]
   NOT: [UserScalarWhereInput!]
@@ -740,6 +857,11 @@ input UserUpdateInput {
   last_name: String
   email: String
   password: String
+  bio: String
+  Status: String
+  github: String
+  linkedin: String
+  twitter: String
   chats: ChatUpdateManyWithoutParticipantsInput
   messages: MessageUpdateManyWithoutUserInput
 }
@@ -749,6 +871,11 @@ input UserUpdateManyDataInput {
   last_name: String
   email: String
   password: String
+  bio: String
+  Status: String
+  github: String
+  linkedin: String
+  twitter: String
 }
 
 input UserUpdateManyMutationInput {
@@ -756,6 +883,11 @@ input UserUpdateManyMutationInput {
   last_name: String
   email: String
   password: String
+  bio: String
+  Status: String
+  github: String
+  linkedin: String
+  twitter: String
 }
 
 input UserUpdateManyWithoutChatsInput {
@@ -787,6 +919,11 @@ input UserUpdateWithoutChatsDataInput {
   last_name: String
   email: String
   password: String
+  bio: String
+  Status: String
+  github: String
+  linkedin: String
+  twitter: String
   messages: MessageUpdateManyWithoutUserInput
 }
 
@@ -795,6 +932,11 @@ input UserUpdateWithoutMessagesDataInput {
   last_name: String
   email: String
   password: String
+  bio: String
+  Status: String
+  github: String
+  linkedin: String
+  twitter: String
   chats: ChatUpdateManyWithoutParticipantsInput
 }
 
@@ -885,6 +1027,84 @@ input UserWhereInput {
   password_not_starts_with: String
   password_ends_with: String
   password_not_ends_with: String
+  bio: String
+  bio_not: String
+  bio_in: [String!]
+  bio_not_in: [String!]
+  bio_lt: String
+  bio_lte: String
+  bio_gt: String
+  bio_gte: String
+  bio_contains: String
+  bio_not_contains: String
+  bio_starts_with: String
+  bio_not_starts_with: String
+  bio_ends_with: String
+  bio_not_ends_with: String
+  Status: String
+  Status_not: String
+  Status_in: [String!]
+  Status_not_in: [String!]
+  Status_lt: String
+  Status_lte: String
+  Status_gt: String
+  Status_gte: String
+  Status_contains: String
+  Status_not_contains: String
+  Status_starts_with: String
+  Status_not_starts_with: String
+  Status_ends_with: String
+  Status_not_ends_with: String
+  github: String
+  github_not: String
+  github_in: [String!]
+  github_not_in: [String!]
+  github_lt: String
+  github_lte: String
+  github_gt: String
+  github_gte: String
+  github_contains: String
+  github_not_contains: String
+  github_starts_with: String
+  github_not_starts_with: String
+  github_ends_with: String
+  github_not_ends_with: String
+  linkedin: String
+  linkedin_not: String
+  linkedin_in: [String!]
+  linkedin_not_in: [String!]
+  linkedin_lt: String
+  linkedin_lte: String
+  linkedin_gt: String
+  linkedin_gte: String
+  linkedin_contains: String
+  linkedin_not_contains: String
+  linkedin_starts_with: String
+  linkedin_not_starts_with: String
+  linkedin_ends_with: String
+  linkedin_not_ends_with: String
+  twitter: String
+  twitter_not: String
+  twitter_in: [String!]
+  twitter_not_in: [String!]
+  twitter_lt: String
+  twitter_lte: String
+  twitter_gt: String
+  twitter_gte: String
+  twitter_contains: String
+  twitter_not_contains: String
+  twitter_starts_with: String
+  twitter_not_starts_with: String
+  twitter_ends_with: String
+  twitter_not_ends_with: String
+  createdAt: DateTime
+  createdAt_not: DateTime
+  createdAt_in: [DateTime!]
+  createdAt_not_in: [DateTime!]
+  createdAt_lt: DateTime
+  createdAt_lte: DateTime
+  createdAt_gt: DateTime
+  createdAt_gte: DateTime
   chats_every: ChatWhereInput
   chats_some: ChatWhereInput
   chats_none: ChatWhereInput

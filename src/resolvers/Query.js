@@ -1,6 +1,7 @@
 
 // ADD THIS FOR AUTH GATE on QUERIES
 const { getUserId } = require('../utils')
+const { prisma } = require('../../prisma/generated/prisma-client')
 
 // TEST SERVER / INFO
 function info(){
@@ -52,10 +53,36 @@ function getUserChats(_parent, args, context){
     })
 }
 
+// MY INFO
 async function me(_parent, _args, context, info) {
     const res = await context.prisma.user({ id: getUserId(context)}, info) 
     return res
 }
+
+// GET MY SELECTED CHAT
+// async function selectedChat(_parent, _args, context, info){
+//     const userId = getUserId(context)
+//     const opArgs = {
+        
+//             id: userId, active: true
+        
+//     }
+//     const res = await context.prisma.chat( opArgs)
+//     console.log("selectedChat res", res)
+//     return res
+// }
+
+async function testThis(_parent, _args, context, info) {
+   return await prisma.user.findMany({
+        include: {
+          posts: {
+              active: true
+          }
+        },
+      }).testThis()
+}
+
+
 
 module.exports = {
     info,
@@ -67,4 +94,6 @@ module.exports = {
     messages,
     getUserChats,
     me,
+    testThis,
+    // selectedChat,
 }
