@@ -20,7 +20,7 @@ function createChat(_parent, args, context){
 }
 
 async function updateChat(_parent, args, context) {
-    const userID = getUserId
+    // const userID = getUserId
 
     const updates = {
         active: args.active
@@ -33,6 +33,26 @@ async function updateChat(_parent, args, context) {
         data: updates
     })
 }
+
+// UPDATE USER INFO
+async function updateUser(_parent, args, context){
+
+    const updates = {
+        bio: args.bio,
+        status: args.status,
+        github: args.github,
+        linkedin: args.linkedin,
+        twitter: args.twitter,
+    }
+
+    return context.prisma.updateUser({
+        where: {
+            id: args.id
+        },
+        data: updates
+    })
+}
+
 // Mutation Delete Chat by ID
 function deleteChat(_parent, args, context){
     
@@ -123,5 +143,6 @@ module.exports = {
     deleteChat,
     createMessage,
     deleteMessage,
+    updateUser,
     updateChat,
 }

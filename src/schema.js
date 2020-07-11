@@ -9,6 +9,8 @@ type User {
     first_name: String!
     last_name: String!
     email: String!
+    bio: String
+    status: String
     github: String
     linkedin: String
     twitter: String
@@ -54,6 +56,15 @@ type Query {
 }
 
 type Mutation {
+
+    updateUser(
+        id: String
+        bio: String
+        status: String
+        github: String
+        linkedin: String
+        twitter: String
+    ): User!
 
     createChat(
         participants: String!

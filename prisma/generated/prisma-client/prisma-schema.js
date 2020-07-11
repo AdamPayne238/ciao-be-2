@@ -568,7 +568,7 @@ type User {
   email: String!
   password: String!
   bio: String
-  Status: String
+  status: String
   github: String
   linkedin: String
   twitter: String
@@ -590,7 +590,7 @@ input UserCreateInput {
   email: String!
   password: String!
   bio: String
-  Status: String
+  status: String
   github: String
   linkedin: String
   twitter: String
@@ -615,7 +615,7 @@ input UserCreateWithoutChatsInput {
   email: String!
   password: String!
   bio: String
-  Status: String
+  status: String
   github: String
   linkedin: String
   twitter: String
@@ -629,7 +629,7 @@ input UserCreateWithoutMessagesInput {
   email: String!
   password: String!
   bio: String
-  Status: String
+  status: String
   github: String
   linkedin: String
   twitter: String
@@ -654,8 +654,8 @@ enum UserOrderByInput {
   password_DESC
   bio_ASC
   bio_DESC
-  Status_ASC
-  Status_DESC
+  status_ASC
+  status_DESC
   github_ASC
   github_DESC
   linkedin_ASC
@@ -673,7 +673,7 @@ type UserPreviousValues {
   email: String!
   password: String!
   bio: String
-  Status: String
+  status: String
   github: String
   linkedin: String
   twitter: String
@@ -765,20 +765,20 @@ input UserScalarWhereInput {
   bio_not_starts_with: String
   bio_ends_with: String
   bio_not_ends_with: String
-  Status: String
-  Status_not: String
-  Status_in: [String!]
-  Status_not_in: [String!]
-  Status_lt: String
-  Status_lte: String
-  Status_gt: String
-  Status_gte: String
-  Status_contains: String
-  Status_not_contains: String
-  Status_starts_with: String
-  Status_not_starts_with: String
-  Status_ends_with: String
-  Status_not_ends_with: String
+  status: String
+  status_not: String
+  status_in: [String!]
+  status_not_in: [String!]
+  status_lt: String
+  status_lte: String
+  status_gt: String
+  status_gte: String
+  status_contains: String
+  status_not_contains: String
+  status_starts_with: String
+  status_not_starts_with: String
+  status_ends_with: String
+  status_not_ends_with: String
   github: String
   github_not: String
   github_in: [String!]
@@ -858,7 +858,7 @@ input UserUpdateInput {
   email: String
   password: String
   bio: String
-  Status: String
+  status: String
   github: String
   linkedin: String
   twitter: String
@@ -872,7 +872,7 @@ input UserUpdateManyDataInput {
   email: String
   password: String
   bio: String
-  Status: String
+  status: String
   github: String
   linkedin: String
   twitter: String
@@ -884,7 +884,7 @@ input UserUpdateManyMutationInput {
   email: String
   password: String
   bio: String
-  Status: String
+  status: String
   github: String
   linkedin: String
   twitter: String
@@ -920,7 +920,7 @@ input UserUpdateWithoutChatsDataInput {
   email: String
   password: String
   bio: String
-  Status: String
+  status: String
   github: String
   linkedin: String
   twitter: String
@@ -933,7 +933,7 @@ input UserUpdateWithoutMessagesDataInput {
   email: String
   password: String
   bio: String
-  Status: String
+  status: String
   github: String
   linkedin: String
   twitter: String
@@ -1041,20 +1041,20 @@ input UserWhereInput {
   bio_not_starts_with: String
   bio_ends_with: String
   bio_not_ends_with: String
-  Status: String
-  Status_not: String
-  Status_in: [String!]
-  Status_not_in: [String!]
-  Status_lt: String
-  Status_lte: String
-  Status_gt: String
-  Status_gte: String
-  Status_contains: String
-  Status_not_contains: String
-  Status_starts_with: String
-  Status_not_starts_with: String
-  Status_ends_with: String
-  Status_not_ends_with: String
+  status: String
+  status_not: String
+  status_in: [String!]
+  status_not_in: [String!]
+  status_lt: String
+  status_lte: String
+  status_gt: String
+  status_gte: String
+  status_contains: String
+  status_not_contains: String
+  status_starts_with: String
+  status_not_starts_with: String
+  status_ends_with: String
+  status_not_ends_with: String
   github: String
   github_not: String
   github_in: [String!]
