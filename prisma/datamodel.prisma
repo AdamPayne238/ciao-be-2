@@ -5,7 +5,7 @@ type User {
   email: String! @unique
   password: String!
   bio: String
-  Status: String
+  status: String
   github: String
   linkedin: String
   twitter: String

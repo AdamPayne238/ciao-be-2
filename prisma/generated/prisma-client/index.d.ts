@@ -192,8 +192,8 @@ export type UserOrderByInput =
   | "password_DESC"
   | "bio_ASC"
   | "bio_DESC"
-  | "Status_ASC"
-  | "Status_DESC"
+  | "status_ASC"
+  | "status_DESC"
   | "github_ASC"
   | "github_DESC"
   | "linkedin_ASC"
@@ -249,7 +249,7 @@ export interface UserCreateWithoutMessagesInput {
   email: String;
   password: String;
   bio?: Maybe<String>;
-  Status?: Maybe<String>;
+  status?: Maybe<String>;
   github?: Maybe<String>;
   linkedin?: Maybe<String>;
   twitter?: Maybe<String>;
@@ -353,20 +353,20 @@ export interface UserWhereInput {
   bio_not_starts_with?: Maybe<String>;
   bio_ends_with?: Maybe<String>;
   bio_not_ends_with?: Maybe<String>;
-  Status?: Maybe<String>;
-  Status_not?: Maybe<String>;
-  Status_in?: Maybe<String[] | String>;
-  Status_not_in?: Maybe<String[] | String>;
-  Status_lt?: Maybe<String>;
-  Status_lte?: Maybe<String>;
-  Status_gt?: Maybe<String>;
-  Status_gte?: Maybe<String>;
-  Status_contains?: Maybe<String>;
-  Status_not_contains?: Maybe<String>;
-  Status_starts_with?: Maybe<String>;
-  Status_not_starts_with?: Maybe<String>;
-  Status_ends_with?: Maybe<String>;
-  Status_not_ends_with?: Maybe<String>;
+  status?: Maybe<String>;
+  status_not?: Maybe<String>;
+  status_in?: Maybe<String[] | String>;
+  status_not_in?: Maybe<String[] | String>;
+  status_lt?: Maybe<String>;
+  status_lte?: Maybe<String>;
+  status_gt?: Maybe<String>;
+  status_gte?: Maybe<String>;
+  status_contains?: Maybe<String>;
+  status_not_contains?: Maybe<String>;
+  status_starts_with?: Maybe<String>;
+  status_not_starts_with?: Maybe<String>;
+  status_ends_with?: Maybe<String>;
+  status_not_ends_with?: Maybe<String>;
   github?: Maybe<String>;
   github_not?: Maybe<String>;
   github_in?: Maybe<String[] | String>;
@@ -457,7 +457,7 @@ export interface UserUpdateManyMutationInput {
   email?: Maybe<String>;
   password?: Maybe<String>;
   bio?: Maybe<String>;
-  Status?: Maybe<String>;
+  status?: Maybe<String>;
   github?: Maybe<String>;
   linkedin?: Maybe<String>;
   twitter?: Maybe<String>;
@@ -490,7 +490,7 @@ export interface UserCreateInput {
   email: String;
   password: String;
   bio?: Maybe<String>;
-  Status?: Maybe<String>;
+  status?: Maybe<String>;
   github?: Maybe<String>;
   linkedin?: Maybe<String>;
   twitter?: Maybe<String>;
@@ -515,7 +515,7 @@ export interface UserUpdateWithoutChatsDataInput {
   email?: Maybe<String>;
   password?: Maybe<String>;
   bio?: Maybe<String>;
-  Status?: Maybe<String>;
+  status?: Maybe<String>;
   github?: Maybe<String>;
   linkedin?: Maybe<String>;
   twitter?: Maybe<String>;
@@ -867,20 +867,20 @@ export interface UserScalarWhereInput {
   bio_not_starts_with?: Maybe<String>;
   bio_ends_with?: Maybe<String>;
   bio_not_ends_with?: Maybe<String>;
-  Status?: Maybe<String>;
-  Status_not?: Maybe<String>;
-  Status_in?: Maybe<String[] | String>;
-  Status_not_in?: Maybe<String[] | String>;
-  Status_lt?: Maybe<String>;
-  Status_lte?: Maybe<String>;
-  Status_gt?: Maybe<String>;
-  Status_gte?: Maybe<String>;
-  Status_contains?: Maybe<String>;
-  Status_not_contains?: Maybe<String>;
-  Status_starts_with?: Maybe<String>;
-  Status_not_starts_with?: Maybe<String>;
-  Status_ends_with?: Maybe<String>;
-  Status_not_ends_with?: Maybe<String>;
+  status?: Maybe<String>;
+  status_not?: Maybe<String>;
+  status_in?: Maybe<String[] | String>;
+  status_not_in?: Maybe<String[] | String>;
+  status_lt?: Maybe<String>;
+  status_lte?: Maybe<String>;
+  status_gt?: Maybe<String>;
+  status_gte?: Maybe<String>;
+  status_contains?: Maybe<String>;
+  status_not_contains?: Maybe<String>;
+  status_starts_with?: Maybe<String>;
+  status_not_starts_with?: Maybe<String>;
+  status_ends_with?: Maybe<String>;
+  status_not_ends_with?: Maybe<String>;
   github?: Maybe<String>;
   github_not?: Maybe<String>;
   github_in?: Maybe<String[] | String>;
@@ -958,7 +958,7 @@ export interface UserUpdateManyDataInput {
   email?: Maybe<String>;
   password?: Maybe<String>;
   bio?: Maybe<String>;
-  Status?: Maybe<String>;
+  status?: Maybe<String>;
   github?: Maybe<String>;
   linkedin?: Maybe<String>;
   twitter?: Maybe<String>;
@@ -1010,7 +1010,7 @@ export interface UserUpdateInput {
   email?: Maybe<String>;
   password?: Maybe<String>;
   bio?: Maybe<String>;
-  Status?: Maybe<String>;
+  status?: Maybe<String>;
   github?: Maybe<String>;
   linkedin?: Maybe<String>;
   twitter?: Maybe<String>;
@@ -1061,7 +1061,7 @@ export interface UserUpdateWithoutMessagesDataInput {
   email?: Maybe<String>;
   password?: Maybe<String>;
   bio?: Maybe<String>;
-  Status?: Maybe<String>;
+  status?: Maybe<String>;
   github?: Maybe<String>;
   linkedin?: Maybe<String>;
   twitter?: Maybe<String>;
@@ -1144,7 +1144,7 @@ export interface UserCreateWithoutChatsInput {
   email: String;
   password: String;
   bio?: Maybe<String>;
-  Status?: Maybe<String>;
+  status?: Maybe<String>;
   github?: Maybe<String>;
   linkedin?: Maybe<String>;
   twitter?: Maybe<String>;
@@ -1162,7 +1162,7 @@ export interface UserPreviousValues {
   email: String;
   password: String;
   bio?: String;
-  Status?: String;
+  status?: String;
   github?: String;
   linkedin?: String;
   twitter?: String;
@@ -1178,7 +1178,7 @@ export interface UserPreviousValuesPromise
   email: () => Promise<String>;
   password: () => Promise<String>;
   bio: () => Promise<String>;
-  Status: () => Promise<String>;
+  status: () => Promise<String>;
   github: () => Promise<String>;
   linkedin: () => Promise<String>;
   twitter: () => Promise<String>;
@@ -1194,7 +1194,7 @@ export interface UserPreviousValuesSubscription
   email: () => Promise<AsyncIterator<String>>;
   password: () => Promise<AsyncIterator<String>>;
   bio: () => Promise<AsyncIterator<String>>;
-  Status: () => Promise<AsyncIterator<String>>;
+  status: () => Promise<AsyncIterator<String>>;
   github: () => Promise<AsyncIterator<String>>;
   linkedin: () => Promise<AsyncIterator<String>>;
   twitter: () => Promise<AsyncIterator<String>>;
@@ -1225,7 +1225,7 @@ export interface User {
   email: String;
   password: String;
   bio?: String;
-  Status?: String;
+  status?: String;
   github?: String;
   linkedin?: String;
   twitter?: String;
@@ -1239,7 +1239,7 @@ export interface UserPromise extends Promise<User>, Fragmentable {
   email: () => Promise<String>;
   password: () => Promise<String>;
   bio: () => Promise<String>;
-  Status: () => Promise<String>;
+  status: () => Promise<String>;
   github: () => Promise<String>;
   linkedin: () => Promise<String>;
   twitter: () => Promise<String>;
@@ -1273,7 +1273,7 @@ export interface UserSubscription
   email: () => Promise<AsyncIterator<String>>;
   password: () => Promise<AsyncIterator<String>>;
   bio: () => Promise<AsyncIterator<String>>;
-  Status: () => Promise<AsyncIterator<String>>;
+  status: () => Promise<AsyncIterator<String>>;
   github: () => Promise<AsyncIterator<String>>;
   linkedin: () => Promise<AsyncIterator<String>>;
   twitter: () => Promise<AsyncIterator<String>>;
@@ -1307,7 +1307,7 @@ export interface UserNullablePromise
   email: () => Promise<String>;
   password: () => Promise<String>;
   bio: () => Promise<String>;
-  Status: () => Promise<String>;
+  status: () => Promise<String>;
   github: () => Promise<String>;
   linkedin: () => Promise<String>;
   twitter: () => Promise<String>;
