@@ -17,6 +17,7 @@ type User {
     createdAt: DateTime!
     chats: [Chat!]
     messages: [Message!]
+    email_visibility: Boolean
 }
 
 type Chat {

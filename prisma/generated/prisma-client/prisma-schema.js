@@ -575,6 +575,7 @@ type User {
   createdAt: DateTime!
   chats(where: ChatWhereInput, orderBy: ChatOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Chat!]
   messages(where: MessageWhereInput, orderBy: MessageOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Message!]
+  email_visibility: Boolean
 }
 
 type UserConnection {
@@ -596,6 +597,7 @@ input UserCreateInput {
   twitter: String
   chats: ChatCreateManyWithoutParticipantsInput
   messages: MessageCreateManyWithoutUserInput
+  email_visibility: Boolean
 }
 
 input UserCreateManyWithoutChatsInput {
@@ -620,6 +622,7 @@ input UserCreateWithoutChatsInput {
   linkedin: String
   twitter: String
   messages: MessageCreateManyWithoutUserInput
+  email_visibility: Boolean
 }
 
 input UserCreateWithoutMessagesInput {
@@ -634,6 +637,7 @@ input UserCreateWithoutMessagesInput {
   linkedin: String
   twitter: String
   chats: ChatCreateManyWithoutParticipantsInput
+  email_visibility: Boolean
 }
 
 type UserEdge {
@@ -664,6 +668,8 @@ enum UserOrderByInput {
   twitter_DESC
   createdAt_ASC
   createdAt_DESC
+  email_visibility_ASC
+  email_visibility_DESC
 }
 
 type UserPreviousValues {
@@ -678,6 +684,7 @@ type UserPreviousValues {
   linkedin: String
   twitter: String
   createdAt: DateTime!
+  email_visibility: Boolean
 }
 
 input UserScalarWhereInput {
@@ -829,6 +836,8 @@ input UserScalarWhereInput {
   createdAt_lte: DateTime
   createdAt_gt: DateTime
   createdAt_gte: DateTime
+  email_visibility: Boolean
+  email_visibility_not: Boolean
   AND: [UserScalarWhereInput!]
   OR: [UserScalarWhereInput!]
   NOT: [UserScalarWhereInput!]
@@ -864,6 +873,7 @@ input UserUpdateInput {
   twitter: String
   chats: ChatUpdateManyWithoutParticipantsInput
   messages: MessageUpdateManyWithoutUserInput
+  email_visibility: Boolean
 }
 
 input UserUpdateManyDataInput {
@@ -876,6 +886,7 @@ input UserUpdateManyDataInput {
   github: String
   linkedin: String
   twitter: String
+  email_visibility: Boolean
 }
 
 input UserUpdateManyMutationInput {
@@ -888,6 +899,7 @@ input UserUpdateManyMutationInput {
   github: String
   linkedin: String
   twitter: String
+  email_visibility: Boolean
 }
 
 input UserUpdateManyWithoutChatsInput {
@@ -925,6 +937,7 @@ input UserUpdateWithoutChatsDataInput {
   linkedin: String
   twitter: String
   messages: MessageUpdateManyWithoutUserInput
+  email_visibility: Boolean
 }
 
 input UserUpdateWithoutMessagesDataInput {
@@ -938,6 +951,7 @@ input UserUpdateWithoutMessagesDataInput {
   linkedin: String
   twitter: String
   chats: ChatUpdateManyWithoutParticipantsInput
+  email_visibility: Boolean
 }
 
 input UserUpdateWithWhereUniqueWithoutChatsInput {
@@ -1111,6 +1125,8 @@ input UserWhereInput {
   messages_every: MessageWhereInput
   messages_some: MessageWhereInput
   messages_none: MessageWhereInput
+  email_visibility: Boolean
+  email_visibility_not: Boolean
   AND: [UserWhereInput!]
   OR: [UserWhereInput!]
   NOT: [UserWhereInput!]

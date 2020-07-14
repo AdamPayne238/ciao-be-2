@@ -201,7 +201,9 @@ export type UserOrderByInput =
   | "twitter_ASC"
   | "twitter_DESC"
   | "createdAt_ASC"
-  | "createdAt_DESC";
+  | "createdAt_DESC"
+  | "email_visibility_ASC"
+  | "email_visibility_DESC";
 
 export type ChatOrderByInput =
   | "id_ASC"
@@ -254,6 +256,7 @@ export interface UserCreateWithoutMessagesInput {
   linkedin?: Maybe<String>;
   twitter?: Maybe<String>;
   chats?: Maybe<ChatCreateManyWithoutParticipantsInput>;
+  email_visibility?: Maybe<Boolean>;
 }
 
 export interface ChatUpdateWithoutMessagesDataInput {
@@ -423,6 +426,8 @@ export interface UserWhereInput {
   messages_every?: Maybe<MessageWhereInput>;
   messages_some?: Maybe<MessageWhereInput>;
   messages_none?: Maybe<MessageWhereInput>;
+  email_visibility?: Maybe<Boolean>;
+  email_visibility_not?: Maybe<Boolean>;
   AND?: Maybe<UserWhereInput[] | UserWhereInput>;
   OR?: Maybe<UserWhereInput[] | UserWhereInput>;
   NOT?: Maybe<UserWhereInput[] | UserWhereInput>;
@@ -461,6 +466,7 @@ export interface UserUpdateManyMutationInput {
   github?: Maybe<String>;
   linkedin?: Maybe<String>;
   twitter?: Maybe<String>;
+  email_visibility?: Maybe<Boolean>;
 }
 
 export interface UserUpdateManyWithoutChatsInput {
@@ -496,6 +502,7 @@ export interface UserCreateInput {
   twitter?: Maybe<String>;
   chats?: Maybe<ChatCreateManyWithoutParticipantsInput>;
   messages?: Maybe<MessageCreateManyWithoutUserInput>;
+  email_visibility?: Maybe<Boolean>;
 }
 
 export interface UserUpdateWithWhereUniqueWithoutChatsInput {
@@ -520,6 +527,7 @@ export interface UserUpdateWithoutChatsDataInput {
   linkedin?: Maybe<String>;
   twitter?: Maybe<String>;
   messages?: Maybe<MessageUpdateManyWithoutUserInput>;
+  email_visibility?: Maybe<Boolean>;
 }
 
 export type MessageWhereUniqueInput = AtLeastOne<{
@@ -931,6 +939,8 @@ export interface UserScalarWhereInput {
   createdAt_lte?: Maybe<DateTimeInput>;
   createdAt_gt?: Maybe<DateTimeInput>;
   createdAt_gte?: Maybe<DateTimeInput>;
+  email_visibility?: Maybe<Boolean>;
+  email_visibility_not?: Maybe<Boolean>;
   AND?: Maybe<UserScalarWhereInput[] | UserScalarWhereInput>;
   OR?: Maybe<UserScalarWhereInput[] | UserScalarWhereInput>;
   NOT?: Maybe<UserScalarWhereInput[] | UserScalarWhereInput>;
@@ -962,6 +972,7 @@ export interface UserUpdateManyDataInput {
   github?: Maybe<String>;
   linkedin?: Maybe<String>;
   twitter?: Maybe<String>;
+  email_visibility?: Maybe<Boolean>;
 }
 
 export interface MessageCreateWithoutUserInput {
@@ -1016,6 +1027,7 @@ export interface UserUpdateInput {
   twitter?: Maybe<String>;
   chats?: Maybe<ChatUpdateManyWithoutParticipantsInput>;
   messages?: Maybe<MessageUpdateManyWithoutUserInput>;
+  email_visibility?: Maybe<Boolean>;
 }
 
 export interface MessageUpdateWithoutChatIdDataInput {
@@ -1066,6 +1078,7 @@ export interface UserUpdateWithoutMessagesDataInput {
   linkedin?: Maybe<String>;
   twitter?: Maybe<String>;
   chats?: Maybe<ChatUpdateManyWithoutParticipantsInput>;
+  email_visibility?: Maybe<Boolean>;
 }
 
 export interface UserUpdateOneRequiredWithoutMessagesInput {
@@ -1149,6 +1162,7 @@ export interface UserCreateWithoutChatsInput {
   linkedin?: Maybe<String>;
   twitter?: Maybe<String>;
   messages?: Maybe<MessageCreateManyWithoutUserInput>;
+  email_visibility?: Maybe<Boolean>;
 }
 
 export interface NodeNode {
@@ -1167,6 +1181,7 @@ export interface UserPreviousValues {
   linkedin?: String;
   twitter?: String;
   createdAt: DateTimeOutput;
+  email_visibility?: Boolean;
 }
 
 export interface UserPreviousValuesPromise
@@ -1183,6 +1198,7 @@ export interface UserPreviousValuesPromise
   linkedin: () => Promise<String>;
   twitter: () => Promise<String>;
   createdAt: () => Promise<DateTimeOutput>;
+  email_visibility: () => Promise<Boolean>;
 }
 
 export interface UserPreviousValuesSubscription
@@ -1199,6 +1215,7 @@ export interface UserPreviousValuesSubscription
   linkedin: () => Promise<AsyncIterator<String>>;
   twitter: () => Promise<AsyncIterator<String>>;
   createdAt: () => Promise<AsyncIterator<DateTimeOutput>>;
+  email_visibility: () => Promise<AsyncIterator<Boolean>>;
 }
 
 export interface ChatEdge {
@@ -1230,6 +1247,7 @@ export interface User {
   linkedin?: String;
   twitter?: String;
   createdAt: DateTimeOutput;
+  email_visibility?: Boolean;
 }
 
 export interface UserPromise extends Promise<User>, Fragmentable {
@@ -1262,6 +1280,7 @@ export interface UserPromise extends Promise<User>, Fragmentable {
     first?: Int;
     last?: Int;
   }) => T;
+  email_visibility: () => Promise<Boolean>;
 }
 
 export interface UserSubscription
@@ -1296,6 +1315,7 @@ export interface UserSubscription
     first?: Int;
     last?: Int;
   }) => T;
+  email_visibility: () => Promise<AsyncIterator<Boolean>>;
 }
 
 export interface UserNullablePromise
@@ -1330,6 +1350,7 @@ export interface UserNullablePromise
     first?: Int;
     last?: Int;
   }) => T;
+  email_visibility: () => Promise<Boolean>;
 }
 
 export interface PageInfo {
