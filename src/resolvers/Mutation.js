@@ -51,6 +51,7 @@ async function updateUser(_parent, args, context){
         },
         data: updates
     })
+    
 }
 
 // Mutation Delete Chat by ID
