@@ -43,6 +43,7 @@ async function updateUser(_parent, args, context){
         github: args.github,
         linkedin: args.linkedin,
         twitter: args.twitter,
+        email_visibility: args.email_visibility,
     }
 
     return context.prisma.updateUser({
@@ -51,7 +52,7 @@ async function updateUser(_parent, args, context){
         },
         data: updates
     })
-    
+
 }
 
 // Mutation Delete Chat by ID
