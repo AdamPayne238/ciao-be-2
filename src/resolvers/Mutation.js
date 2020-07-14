@@ -20,19 +20,18 @@ function createChat(_parent, args, context){
 }
 
 async function updateChat(_parent, args, context) {
-    // const userID = getUserId
-
     const updates = {
         active: args.active
     }
 
-    return context.prisma.updateChat({
+    return await context.prisma.updateChat({
         where: {
             id: args.id
         },
         data: updates
     })
 }
+
 
 // UPDATE USER INFO
 async function updateUser(_parent, args, context){
@@ -43,7 +42,6 @@ async function updateUser(_parent, args, context){
         github: args.github,
         linkedin: args.linkedin,
         twitter: args.twitter,
-        // email_visibility: args.email_visibility,
     }
 
     return context.prisma.updateUser({

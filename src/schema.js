@@ -65,7 +65,6 @@ type Mutation {
         github: String
         linkedin: String
         twitter: String
-        # email_visibility: Boolean
     ): User!
 
     createChat(
