@@ -37,6 +37,11 @@ type Message {
     user: User!
 }
 
+type Subscription {
+    newChat: Chat
+    newMessage: Message
+}
+
 type Query {
     info: String!
 
