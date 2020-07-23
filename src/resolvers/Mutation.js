@@ -4,12 +4,13 @@ const jwt = require('jsonwebtoken')
 
 const { getUserId, APP_SECRET } = require('../utils')
 
-// Mutation Create Chat
+
+// Mutation Create Chat w/ Subscriptions
 function createChat(_parent, args, context){
      
     const userId = getUserId(context)
 
-    return context.prisma.createChat({
+    const res =  context.prisma.createChat({
         participants: {
           connect: [
            {id: args.participants},
@@ -17,6 +18,9 @@ function createChat(_parent, args, context){
           ]
         }
       })
+      context.pubsub.publish("NEW_CHAT", res)
+
+      return res
 }
 
 async function updateChat(_parent, args, context) {
@@ -63,12 +67,13 @@ function deleteChat(_parent, args, context){
     })
 }
 
-// Mutation Create Message
+
+// Mutation Create Message w/ Subscriptions
 function createMessage(_parent, args, context){
 
     const userId = getUserId(context)
 
-    return context.prisma.createMessage({
+    const res = context.prisma.createMessage({
         text: args.text,
         chatId: {
             connect: {id: args.chatId}
@@ -78,6 +83,9 @@ function createMessage(_parent, args, context){
             connect: {id: userId}
           }
     })
+    context.pubsub.publish("NEW_MESSAGE", res)
+
+    return res
 }
 
 // Mutation Delete Message by ID
