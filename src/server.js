@@ -29,7 +29,7 @@ const server = new GraphQLServer({
         return {
             ...request, 
             prisma,
-            pubsub
+            pubsub,
          }
     },
   })
