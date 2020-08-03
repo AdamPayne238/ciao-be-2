@@ -1,9 +1,3 @@
 # ciao-be-2
 
-## TODO ##
-- Add new tabl
-
-Update auth 
-find bug preventing auth from transfering from loggin to graphql mutations
-
-bloop
+# This is a Backend created with GraphQL and Prisma. Currently, it is hosted on heroku to and the database is migrate to postgres to ensure data persistance for my front end application ciao-app.
